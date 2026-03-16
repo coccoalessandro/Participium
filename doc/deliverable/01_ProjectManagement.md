@@ -55,11 +55,23 @@
 ## Activity table
 | ID | Activity | Duration | Dependencies | Start | End | Critical | Milestone |
 |:---|:---------|:---------|:-------------|:------|:----|:------|:---------|
-| R# |          |          |              |       |     |       |          |
+| T1.1 | Definition of functional requirement | 2 | - | 1 | 2 | yes | no |
+| T1.2 | Definition of non functional requirement | 2 | - | 1 | 2 | yes | no |
+| T2.1 | Architecture definition | 2 | T1.1, T2.2 | 3 | 4 | yes | no |
+| T2.2 | Definition of storage architecture | 2 | T1.1, T1.2 |  3  |  4   |   yes    |     yes     |
+| T3.1 | Development of APIs and backend skeleton | 4 | T2.1, T2.2| 5| 8 | yes | yes |
+| T3.2 | Development of backend | 12 | T3.1| 9 | 20 | no | no |
+| T3.3 | Development of web app frontend | 16 | T3.1| 9| 24| yes | no |
+| T4.1 | Definition of test plan |5 | T3.1, T3.2, T3.3 | 25| 29| yes | no |
+| T4.2 | Acceptance testing with the user | 2| T4.1|30 | 31| yes | yes |
+| T5.1 | Deployment of the system | 1| T4.2| 32| 32| yes | yes |
+| T5.2 | Monitoring and bug fixing | 4| T5.1| 33| 36| yes | no |
 
 
 ## Critical path
-`X → X → X → ...`
+`T1.1 | T1.2 → T2.1 | T2.2 → T3.1 → T3.2 | T3.3 → T4.1 → T4.2 → T5.1 → T5.2`
+
+Minimum duration of the activities in the GANTT Diagram: 36 weeks.
 
 
 
@@ -83,6 +95,18 @@ Risk level thresholds (by exposure):
 ## Risks table
 | ID | Risk | Category | P | I | P×I | Level | Mitigation / Response strategy |
 |:---|:-----|:---------|--:|--:|----:|:------|:-------------------------------|
-|  |      |          |   |   |     |       |                                |
-
+| R1 | Scalabity and latency issues | Technical | 3  | 4  |  12   | High | Load Management                                |
+| R2 | Storage issues causing loss of data | Technical | 2 | 5 | 10 | Medium | Mirroring and backup |
+| R3 | API changes in OpenStreetMap | Technical | 3 | 4 | 12 | High | Abstraction layer for map APIs, fallback provider if needed |
+| R4 | Security vulnerabilities exposing user data | Technical | 2 | 5 | 10 | medium | Apply secure authentication, input validation, encryption |
+| R5 | Spam and fake reports | Technical | 4 | 3 | 12 | High | Security measure that distinguishes humans from bots, reporting/flagging mechanism |
+| R6 | Failure of external communication services | Technical | 2 | 2 | 4 | Low | Fallback email provider |
+| R7 | Interaction issues between system modules | Technical | 3 | 5 | 15 | High | Modular architecture, reduce redundant dependability between modules, integration testing |
+| R8 | Bigger competitor enters the scene | Business | 1 | 5 | 5 | Low | Market analysis by external experts |
+| R9 | Low citizen adoption due to lack of digital skills | Business | 1 | 5 | 5|Low | Promote platform campaigns and provide tutorials |
+| R10 | Services costs increase | Business | 3 | 3 | 9 | Medium | Consider cheaper alternatives |
+| R11 | Poor coordination between team members | Project | 2 | 4 | 8 | Medium | Clear task allocation, weekly meetings |
+| R12 | Lack of developer skills or experience | Project | 2 | 2 | 4 | Low | Provide training courses and documentation |
+| R13 | Bad or incomplete requirements | Project | 3 | 4 | 12 | High | Requirements reviews |
+| R14 | Developer's turnover | Project | 2 | 4 | 8 | Medium | Fast hiring processes |
 
