@@ -22,7 +22,7 @@
 
 Attach your context diagram as an image under `../data/img/` and link it here:
 
-- `![](../data/img/context-diagram.png)`
+![](../data/img/context-diagram.png)
 
 ---
 
