@@ -22,6 +22,8 @@
 | D5 | API documentation | Documentation | |
 | D6 | Open source license | Documentation | |
 
+![](../../data/img/PBS.png)
+
 ---
 
 # Work Breakdown Structure (WBS)
@@ -42,6 +44,7 @@
 | T5.2 | Deployment and go-live | Monitoring and bug fixing | D4, D5, D6 |
 
 
+![](../../data/img/WBS.png)
 
 
 
@@ -73,6 +76,7 @@
 
 Minimum duration of the activities in the GANTT Diagram: 36 weeks.
 
+![](../../data/img/GANTT-chart.png)
 
 
 ---
