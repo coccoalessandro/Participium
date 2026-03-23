@@ -1,5 +1,6 @@
 # 1) Stakeholders
 
+
 | ID     | Stakeholder name | Description | Role | Main concerns |
 |:-------|:-----------------|:------------|:-----|:--------------|
 | STK-1 | Citizen (registered) | Registered citizens can submit reports, track their evolution, and interact with the municipality. They own a citizen account created by providing their identity information | User who can view and submit reports | Ease of use of the interfaces, privacy of personal data |
@@ -16,93 +17,166 @@
 | STK-12 | Municipality of Turin | Public authority for which the system is developed | Commisioner | Transparency, public trust, efficiency of urban issue resolution |
 | STK-13 | Urban service providers | external companies or municipal contractors responsible for physically resolving reported issues (e.g., maintenance, repairs) | Service executor | Clear task assignment, timely communication, operational efficiency |
 
+
 ---
+
 
 # 2) Context Diagram
 
+
 Attach your context diagram as an image under `../data/img/` and link it here:
+
 
 ![](../../data/img/context-diagram.png)
 
+
 ---
+
 
 # 3) Interfaces
 
+
 | ID    | Interface | Actor       | Physical interface | Logical interface |
 |:------|:----------|:------------|:-------------------|:------------------|
-| IF-1 | | Citizen (registered) | Smartphone/PC with internet connection | Web GUI |  
-| IF-2 | | Citizen (visitor) | Smartphone/PC with internet connection | Web GUI |  
-| IF-3 | | Municipal office | Smartphone/PC with internet connection | Web GUI |  
-| IF-4 | | System administrator | Smartphone/PC with internet connection | Web GUI |  
-| IF-5 | | OpenStreetMap API | Internet connection | Map APIs |  
-| IF-6 | | Authetication system | Internet connection | Authentication APIs |  
-| IF-7 | | Notification platform | Internet connection | Notification APIs |  
-| IF-8 | | Email service | Internet connection | Email APIs |  
-| IF-9 | | Direct messaging platform | Internet connection | Messaging APIs |  
-| IF-10 | | Advertiser |  |  |  
-| IF-11 | | Development team | Smartphone/PC with internet connection | Development and Web GUIs |  
-| IF-12 | | Municipality of Turin | Smartphone/PC with internet connection | Web GUI |
-| IF-13 | | Urban service providers | Smartphone on site |  |    
+| IF-1 | | Citizen (registered) | Smartphone/PC with internet connection | Web GUI | 
+| IF-2 | | Citizen (visitor) | Smartphone/PC with internet connection | Web GUI | 
+| IF-3 | | Municipal office | Smartphone/PC with internet connection | Web GUI | 
+| IF-4 | | System administrator | Smartphone/PC with internet connection | Web GUI | 
+| IF-5 | | OpenStreetMap API | Internet connection | Map APIs | 
+| IF-6 | | Authetication system | Internet connection | Authentication APIs | 
+| IF-7 | | Notification platform | Internet connection | Notification APIs | 
+| IF-8 | | Email service | Internet connection | Email APIs | 
+| IF-9 | | Direct messaging platform | Internet connection | Messaging APIs | 
+| IF-10 | | Advertiser |  |  | 
+| IF-11 | | Development team | Smartphone/PC with internet connection | Development and Web GUIs | 
+| IF-12 | | Municipality of Turin | Smartphone/PC with internet connection | Web GUI |  
+
 
 ---
 
+
 # 4) Personas
+
 
 | ID     | Name | Role | Background / Context | Goals | Constraints | Devices / Usage setting | Accessibility / Additional needs |
 |:-------|:-----|:-----|:---------------------|:------|:------------|:------------------------|:---------------------------------|
 | PER-1 | Jack | Registered citizen | Citizen of Turin who usually goes to work by car and uses Participium every morning to report and visualize the reports | Avoid traffic disruptions and contribute to improving city service | Limited time due to work; cannot spend much time creating detailed reports | Mostly his smartphone, sometimes his PC | Clear and minimal GUI, simple to use with his smartphone |
 | PER-2 | John | Visitor citizen | Non resident student of Turin who once per week uses car sharing to reach places in Turin far from his home and uses Participium not to be stuck in the traffic | Avoid traffic disruptions | Passive user | Smartphone | Clear and minimal GUI, simple to use with his smartphone |
 | PER-3 | Mary | Municipal officer | She works for the municipality of Turin and her role is to check submitted reports and update their status | Maintaining reports quality and contributing to improve the city service | Time loss in deleting fake reports and in making the bad written ones useful | PC workstation | Automatization of report validation |
-| PER-4 | Lian | System administrator | Technical member of the administration team who works in the security department | Guarantee user data protection and integrity | Must comply with GDPR internal privacy policies and must quickly respond to data integrity incidents | PC workstation | Secure authentication service and clear GDPR documentation | 
+| PER-4 | Lian | System administrator | Technical member of the administration team who works in the security department | Guarantee user data protection and integrity | Must comply with GDPR internal privacy policies and must quickly respond to data integrity incidents | PC workstation | Secure authentication service and clear GDPR documentation |
 | PER-5 | Zhuri | Advertiser | Marketing professional working for an external advertising company | Reach the target audience and promote its services within the app | Must follow platform rules and guidelines | PC and mobile web | Access to clear advertising interface |
 | PER-6 | Lucy | Development team member | Software engineer in charge of implementing new features and maintaining Participium | Deliver reliabke and maintainable system updates | Must follow coding standards | PC workstation and IDE | Access to development tools and documetation |
 | PER-7 | Frank | Municipality of Turin employee | Administrative staff responsible for ensuring policies are applied | Proper handling of urban issues | Limited technical skills | PC workstation | User-friendly GUI and tutorials |
-| PER-8 | Alex | Urban service provider | Technician performing maintainance and repairs based on reports received to Participium | Resolve reported urban issues efficiently and on time | Dependent on assignment scheduling and limited access to internal system | Smartphone on site | Mobile friendly GUI with clear task instructions and location info |
 ---
 
+
 # 5) User Stories
+
 
 | ID    | Persona/Role | User story (As a… I want… so that…) |
 |:------|:-------------|:------------------------------------|
 | US-1 | Registered citizen | As a registered citizen, I want to create an account on Participium so that I can access the platform |
-| US-2 | Registered citizen | As a registered citizen, I want to be able to upload a new report on the platform with all the daitails I consider useful suck as photos, location and category |
-| US-3 | Registered citizen | As a registered citizen, I want to be able to upload my reports with anonymity option |
+| US-2 | Registered citizen | As a registered citizen, I want to be able to submit a new report on the platform with all the details I consider useful suck as photos, location and category |
+| US-3 | Registered citizen | As a registered citizen, I want to be able to submit my reports with anonymity option |
 | US-4 | Registered/visitor citizen | As a citizen, I want to check the reports in my city and their status so that I can be informed about issues in my area |
-| US-5 | Registered/visitor citizen | As a citizen, I want to find records based on category filters |
-| US-6 | Registered/visitor citizen | As a citizen, I want to find reports by using the map or the table view |
-| US-7 | Registered/visitor citizen | As a citizen, I want to export the table view in a CSV format |
-| US-8 | Registered/visitor citizen | As a citizen, I want to receive notifications about the uploading of new reports or about messages from municipality officers |
-| US-9 | Registered/visitor citizen | As a citizen, I want to receive emails about the uploading of new reports or about messages from municipality officers |
-| US-10 | Registered/visitor citizen | As a citizen, I want to check public statistics |
-| US-11 | Registered/visitor citizen | As a citizen, I want to communicate with municipality officers |
-| US-12 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
-| US-13 | Municipal officer | As a municipal officer, I want to check reports and be able to update/delete them |
-| US-14 | Municipal officer | As a municipal officer, I want to communicate with citizens |
-| US-15 | System administrator | As a system administrator, I want to manage the access to the platform through special permissions |
-| US-16 | System administrator | As a system administrator, I want to guaratee the security on user data |
-| US-17 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
-| US-18 | Advertiser | As an advertiser, I want to submit advertisment content to the platform so that it can be displayed to relevat users |
-| US-19 | Advertiser | As an advertiser, I want to communicate with system administrators to measure the effectiveness of my ads |
-| US-20 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
-| US-21 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
-| US-22 | Municipality of Turin | As a municipality of Turin member, I want to track the effectivenss of the platform so that I can be sure it is useful for the citizens |
-| US-23 | Urban service provider | As a urban service provider, I want to receive assignement tasks with the location so that I can resolve reported urban issues efficiently |
-| US-24 | Urban service provider | As a urban service provider, I want to refer to municipal officers via platform the new status of the tasks |
+| US-5 | Registered citizen | As a registered citizen, I want to follow the reports in my city and their status so that I can be informed about their status changes |
+| US-6 | Registered/visitor citizen | As a citizen, I want to find reports based on category filters |
+| US-7 | Registered/visitor citizen | As a citizen, I want to find reports by using the map or the table view |
+| US-8 | Registered/visitor citizen | As a citizen, I want to export the table view in a CSV format |
+| US-9 | Registered/visitor citizen | As a citizen, I want to receive notifications about the submitting of new reports or status changes of already published ones |
+| US-10 | Registered/visitor citizen | As a citizen, I want to receive notifications about messages from municipality officers |
+| US-11 | Registered/visitor citizen | As a citizen, I want to receive emails about the submitting of new reports or status changes of already published ones |
+| US-12 | Registered/visitor citizen | As a citizen, I want to receive emails about messages from municipality officers |
+| US-13 | Registered/visitor citizen | As a citizen, I want to check public statistics |
+| US-14 | Registered/visitor citizen | As a citizen, I want to communicate with municipality officers |
+| US-15 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
+| US-16 | Municipal officer | As a municipal officer, I want to check reports and be able to update/delete them |
+| US-17 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
+| US-18 | System administrator | As a system administrator, I want to manage the access to the platform through special permissions |
+| US-19 | System administrator | As a system administrator, I want to guarantee the security on user data |
+| US-20 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
+| US-21 | Advertiser | As an advertiser, I want to communicate with system administrators to submit advertisement content to the platform so that it can be displayed to relevant users |
+| US-22 | Advertiser | As an advertiser, I want to communicate with system administrators to measure the effectiveness of my ads |
+| US-23 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
+| US-24 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
+| US-25 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
 
 
 ---
+
+
+
+
+
 
 # 6) Functional Requirements (FR)
 
+
 | ID    | Requirement statement (The system shall…) | Priority | User story ID | Notes |
 |:------|:------------------------------------------|:---------|:--------------|:------|
-| FR-XX |                                           |          |               |       |
+| FR-1 | The system shall provide means to create user accounts |  |  |  |
+| FR-1.1 | The system shall allow users to define and update basic profile information (username, first name, last name)| Critical | US-1/US-14/US-17 |  |
+| FR-1.2 | The system shall allow users to select the type of account  | Critical | US-1/US-14/US-17 |  |
+| FR-1.3 | The system shall verify user email through a verification link. | High | US-1 | Prevent fake accounts. |
+| FR-1.4 | The system shall allow users to add and update profile metadata | Important | US-1/US-14/US-17 |  |
+| FR-1.5 | The system shall allow registered users to log in and access their profile. | Critical | US-1/US-14/US-17 |  |
+| FR-1.6 | The system shall allow registered users to optionally add a profile picture to their account. | Low | US-1/US-14/US-17 |  |
+| FR-2 | The system shall allow registered users to create a new report. |  |  |  |
+| FR-2.1 | The system shall allow registered users to select a geographic location on a map for a report. | Important | US-2 | Based on OpenStreetMap. |
+| FR-2.2 | The system shall allow registered users to add a title and a textual description to a report | Critical | US-2 |  |
+| FR-2.3 | The system shall allow registered users to upload up to 3 photos per report. | Important | US-2 |  |
+| FR-2.4 | The system shall allow users to select a category for a report from a predefined set. | Critical | US-2 |  |
+| FR-2.5 | The system shall allow registered users to submit reports anonymously. |  | US-2/US-3 |  |
+| FR-3 | The system shall provide means to search for reports |  |  |  |
+| FR-3.1 | The system shall allow user to search for reports based on category filters. | US-5 | Critical |  |
+| FR-3.2 | The system shall allow users to sort report results based on selected criteria (date, category, status, ascending/descending...). | Medium |  |  |
+| FR-3.3 | The system shall allow user to search for reports by using table and/or map view | Critical | US-6 |  |
+| FR-4 | The system shall notify users when report status changes. | Critical |  |  
+| FR-4.1 | The system shall support in-platform notifications for the reporting citizen and for who follows the report. | High |  |  |
+| FR-4.2 | The system shall (optionally) send email notifications to registered users. |  |  |  |
+| FR-4.3 | The system shall allow direct messaging between users and municipal operators. |  |  |  |
+| FR-4.4 | The system shall notify registered users when a new report is submitted to the platform. | Medium |  |  |
+| FR-5 | The system shall allow users to export the table view in a CSV format | Important | US-7 |  |
+| FR-6 | The system shall provide public statistics to all users.| Important | US-12 |  |
+| FR-6.1 | The system shall provide advanced (private) statistics for administrators. | | | |
+| FR-7 | The system shall provide a report detail view for each published report. | Critical | |  |
+| FR-7.1 | The system shall display the complete content of each report in its detailed view (title, description, category, location, attached photos...). | | | |
+| FR-7.2 | The system shall allow registered users to start following a report (including reports submitted by others). | | | |
+| FR-7.3 | The system shall allow registered users to stop following a report. | | | |
+| FR-8 | The system shall provide means to municipal officers to have special permissions on reports |  |  |  |
+| FR-8.1 | The system shall allow municipal officers to check reports and be able to update or delete them | Critical | |  |
+| FR-8.2 | The system shall allow municipal officers to communicate with citizens and urban service providers via platform messages | Critical | |  |
+| FR-9 |The system shall allow visitors (non-registered users) to access the public portal for consultation. |  |  |  |
 
 
 ---
 
+
 # 7) Non-Functional Requirements (NFR)
+
 
 | ID     | Category | Requirement statement | Metric / Target | Verification                           | Priority | Notes |
 |:-------|:---------|:----------------------|:----------------|:---------------------------------------|:---------|:------|
-| NFR-XX |          |                       |                 |                                        |          |       |
+| NFR-1 | Efficiency | The system shall load the map view efficiently | ≤ 2 seconds (95% of requests) | Performance testing | High | Depends on network latency |
+| NFR-2 | Efficiency | The system shall display report details promptly. | ≤ 1 second | Performance testing | High | After user selection  |
+| NFR-3 | Efficiency | The system shall load the table view efficiently | ≤ 2 seconds for up to 1000 reports | Load testing | High | Includes filtering and sorting |
+| NFR-4 | Efficiency | The system shall return search results quickly. | Performance testing | ≤ 2 seconds | High | applies to all filters |
+| NFR-5 | Efficiency | The system shall process and confirm report submission efficiently | ≤ 5 seconds | Performance testing | Medium  | Excluding image uploading |
+| NFR-6 | Efficiency | The system shall generate and download CSV files | ≤ 1 second | Performance testing | Medium |  |
+| NFR-7 | Efficiency | The system shall deliver notifications/emails in real-time | ≤ 1 second (in-app) and ≤ 30 seconds (emails) | Monitoring | High | Email delay depends on provider |
+| NFR-8 | Efficiency | The system shall process report submissions efficiently | ≤ 2 seconds | Performance testing | High | |
+| NFR-9 | Maintainability | The system shall allow new evolutive features to be integrated quickly | Within 1 month of development | Code developing | High |  |
+| NFR-10 | Maintainability | The system shall allow bug fixing operations | Within 1 month of developing | Code developing | High |  |
+| NFR-11 | Maintainability | The system shall be easily testable | Automated testing cover at least 75% of the code | Code testing | Medium |  |
+| NFR-12 | Maintainability | The system shall be modular | Code organised in independent components/modules | Code developing | High |  |
+| NFR-13 | Usability | A new user must be able to learn how to submit and search a report without consulting external manuals | 90% of the users complete the submission/research within 5 minutes | User acceptance testing | High |  |
+| NFR-14 | Usability | The system should provide an interface accessible to users with visual or motor impairments | Following standard guidelines | User acceptance testing | High |  |
+| NFR-15 | Usability | The system must prevent the submission of incomplete reports through clear feedbacks | Implement pop-up | Functional testing | Medium |  |
+| NFR-16 | Portability | The system must be compatible with the major web browsers (Chrome, Firefox, Safari) | Last 3 stable versions | Portability testing | High |  |
+| NFR-17 | Reliability | The system shall support a reasonable number of registered users | at least 500,000 | Capability testing | High |  |
+| NFR-18 | Reliability | The system shall support a reasonable number of concurrent users | at least 2,000 | Stress testing | High |  |
+| NFR-19 | Reliability | The system must provide a stable up-time period over the year |  ≥ 99% of the time | Stress testing | High |  |
+| NFR-20 | Security | The system must use encryption for user data | The encryption should not be too computationally expensive. | Security test | High |  |
+| NFR-21 | Security | The system should inform users about an eventual data breach in a reasonable time | Send a notification within 5 minutes | Security test | High | |
+
+
