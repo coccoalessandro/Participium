@@ -12,10 +12,9 @@
 | STK-7 | Notification platform | Component responsible for generating and delivering in-platform notifications related to report updates | Notification service | Timeliness, reliability, correct delivery of notifications |
 | STK-8 | Email service | External service used to send email notifications to users who opted for them | Communication service | Deliverability, latency, spam filtering issues |
 | STK-9 | Direct messaging platform | Internal system enabling communication between citizens and operators through messages | Communication channel | Message reliability, usability, data privacy |
-| STK-10 | Advertisers | External entities potentially interested in placing advertisements within the platform (if supported) | Business stakeholder | Visibility, targeting effectiveness, user engagement |
-| STK-11 | Development team | Group responsible for designing, implementing, maintaining, and evolving the Participium system | System builder and maintainer | Code quality, maintainability, scalability, requirement clarity |
-| STK-12 | Municipality of Turin | Public authority for which the system is developed | Commisioner | Transparency, public trust, efficiency of urban issue resolution |
-| STK-13 | Urban service providers | external companies or municipal contractors responsible for physically resolving reported issues (e.g., maintenance, repairs) | Service executor | Clear task assignment, timely communication, operational efficiency |
+| STK-10 | Development team | Group responsible for designing, implementing, maintaining, and evolving the Participium system | System builder and maintainer | Code quality, maintainability, scalability, requirement clarity |
+| STK-11 | Municipality of Turin | Public authority for which the system is developed | Commisioner | Transparency, public trust, efficiency of urban issue resolution |
+| STK-12 | Urban service providers | external companies or municipal contractors responsible for physically resolving reported issues (e.g., maintenance, repairs) | Service executor | Clear task assignment, timely communication, operational efficiency |
 
 
 ---
@@ -41,15 +40,11 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | IF-1 | | Citizen (registered) | Smartphone/PC with internet connection | Web GUI | 
 | IF-2 | | Citizen (visitor) | Smartphone/PC with internet connection | Web GUI | 
 | IF-3 | | Municipal office | Smartphone/PC with internet connection | Web GUI | 
-| IF-4 | | System administrator | Smartphone/PC with internet connection | Web GUI | 
-| IF-5 | | OpenStreetMap API | Internet connection | Map APIs | 
-| IF-6 | | Authetication system | Internet connection | Authentication APIs | 
-| IF-7 | | Notification platform | Internet connection | Notification APIs | 
-| IF-8 | | Email service | Internet connection | Email APIs | 
-| IF-9 | | Direct messaging platform | Internet connection | Messaging APIs | 
-| IF-10 | | Advertiser |  |  | 
-| IF-11 | | Development team | Smartphone/PC with internet connection | Development and Web GUIs | 
-| IF-12 | | Municipality of Turin | Smartphone/PC with internet connection | Web GUI |  
+| IF-4 | | OpenStreetMap API | Internet connection | Map APIs | 
+| IF-5 | | Authetication system | Internet connection | Authentication APIs | 
+| IF-6 | | Notification platform | Internet connection | Notification APIs | 
+| IF-7 | | Email service | Internet connection | Email APIs | 
+| IF-8 | | Direct messaging platform | Internet connection | Messaging APIs |  
 
 
 ---
@@ -64,7 +59,6 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | PER-2 | John | Visitor citizen | Non resident student of Turin who once per week uses car sharing to reach places in Turin far from his home and uses Participium not to be stuck in the traffic | Avoid traffic disruptions | Passive user | Smartphone | Clear and minimal GUI, simple to use with his smartphone |
 | PER-3 | Mary | Municipal officer | She works for the municipality of Turin and her role is to check submitted reports and update their status | Maintaining reports quality and contributing to improve the city service | Time loss in deleting fake reports and in making the bad written ones useful | PC workstation | Automatization of report validation |
 | PER-4 | Lian | System administrator | Technical member of the administration team who works in the security department | Guarantee user data protection and integrity | Must comply with GDPR internal privacy policies and must quickly respond to data integrity incidents | PC workstation | Secure authentication service and clear GDPR documentation |
-| PER-5 | Zhuri | Advertiser | Marketing professional working for an external advertising company | Reach the target audience and promote its services within the app | Must follow platform rules and guidelines | PC and mobile web | Access to clear advertising interface |
 | PER-6 | Lucy | Development team member | Software engineer in charge of implementing new features and maintaining Participium | Deliver reliabke and maintainable system updates | Must follow coding standards | PC workstation and IDE | Access to development tools and documetation |
 | PER-7 | Frank | Municipality of Turin employee | Administrative staff responsible for ensuring policies are applied | Proper handling of urban issues | Limited technical skills | PC workstation | User-friendly GUI and tutorials |
 ---
@@ -83,23 +77,20 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | US-6 | Registered/visitor citizen | As a citizen, I want to find reports based on category filters |
 | US-7 | Registered/visitor citizen | As a citizen, I want to find reports by using the map or the table view |
 | US-8 | Registered/visitor citizen | As a citizen, I want to export the table view in a CSV format |
-| US-9 | Registered/visitor citizen | As a citizen, I want to receive notifications about the submitting of new reports or status changes of already published ones |
-| US-10 | Registered/visitor citizen | As a citizen, I want to receive notifications about messages from municipality officers |
-| US-11 | Registered/visitor citizen | As a citizen, I want to receive emails about the submitting of new reports or status changes of already published ones |
-| US-12 | Registered/visitor citizen | As a citizen, I want to receive emails about messages from municipality officers |
+| US-9 | Registered citizen | As a citizen, I want to receive notifications about the submitting of new reports or status changes of already published ones |
+| US-10 | Registered citizen | As a citizen, I want to receive notifications about messages from municipality officers |
+| US-11 | Registered citizen | As a citizen, I want to receive emails about the submitting of new reports or status changes of already published ones |
+| US-12 | Registered  citizen | As a citizen, I want to receive emails about messages from municipality officers |
 | US-13 | Registered/visitor citizen | As a citizen, I want to check public statistics |
-| US-14 | Registered/visitor citizen | As a citizen, I want to communicate with municipality officers |
+| US-14 | Registered citizen | As a citizen, I want to communicate with municipality officers |
 | US-15 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
 | US-16 | Municipal officer | As a municipal officer, I want to check reports and be able to update/delete them |
 | US-17 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
-| US-18 | System administrator | As a system administrator, I want to manage the access to the platform through special permissions |
-| US-19 | System administrator | As a system administrator, I want to guarantee the security on user data |
-| US-20 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
-| US-21 | Advertiser | As an advertiser, I want to communicate with system administrators to submit advertisement content to the platform so that it can be displayed to relevant users |
-| US-22 | Advertiser | As an advertiser, I want to communicate with system administrators to measure the effectiveness of my ads |
-| US-23 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
-| US-24 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
-| US-25 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
+| US-18 | System administrator | As a system administrator, I want to guarantee the security on user data |
+| US-19 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
+| US-20 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
+| US-21 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
+| US-22 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
 
 
 ---
