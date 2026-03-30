@@ -69,28 +69,31 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 
 | ID    | Persona/Role | User story (As a… I want… so that…) |
 |:------|:-------------|:------------------------------------|
-| US-1 | Registered citizen | As a registered citizen, I want to create an account on Participium so that I can access the platform |
-| US-2 | Registered citizen | As a registered citizen, I want to be able to submit a new report on the platform with all the details I consider useful suck as photos, location and category |
-| US-3 | Registered citizen | As a registered citizen, I want to be able to submit my reports with anonymity option |
-| US-4 | Registered/visitor citizen | As a citizen, I want to check the reports in my city and their status so that I can be informed about issues in my area |
-| US-5 | Registered citizen | As a registered citizen, I want to follow the reports in my city and their status so that I can be informed about their status changes |
-| US-6 | Registered/visitor citizen | As a citizen, I want to find reports based on category filters |
-| US-7 | Registered/visitor citizen | As a citizen, I want to find reports by using the map or the table view |
-| US-8 | Registered/visitor citizen | As a citizen, I want to export the table view in a CSV format |
-| US-9 | Registered citizen | As a citizen, I want to receive notifications about the submitting of new reports or status changes of already published ones |
-| US-10 | Registered citizen | As a citizen, I want to receive notifications about messages from municipality officers |
-| US-11 | Registered citizen | As a citizen, I want to receive emails about the submitting of new reports or status changes of already published ones |
-| US-12 | Registered  citizen | As a citizen, I want to receive emails about messages from municipality officers |
-| US-13 | Registered/visitor citizen | As a citizen, I want to check public statistics |
-| US-14 | Registered citizen | As a citizen, I want to communicate with municipality officers |
-| US-15 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
-| US-16 | Municipal officer | As a municipal officer, I want to check reports and be able to update/delete them |
-| US-17 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
-| US-18 | System administrator | As a system administrator, I want to guarantee the security on user data |
-| US-19 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
-| US-20 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
+| US-1 | Visitor citizen | As a visitor citizen, I want to create an account on Participium so that I can access the platform |
+| US-2 | Registered citizen | As a registered citizen, I want to update my account on Participium |
+| US-3 | Registered citizen | As a registered citizen, I want to be able to submit a new report on the platform with all the details I consider useful such as photos, location and category |
+| US-4 | Registered citizen | As a registered citizen, I want to be able to submit my reports with anonymity option |
+| US-5 | Visitor citizen | As a citizen, I want to check the reports in my city and their status so that I can be informed about issues in my area |
+| US-6 | Registered citizen | As a registered citizen, I want to follow/unfollow the reports in my city and their status so that I can be informed about their status changes |
+| US-7 | Visitor citizen | As a citizen, I want to find reports based on category filters and sorts the results. |
+| US-8 | Visitor citizen | As a citizen, I want to find reports by using the map or the table view |
+| US-9 | Visitor citizen | As a citizen, I want to export the table view in a CSV format |
+| US-10 | Registered citizen | As a citizen, I want to receive notifications when report status changes. |
+| US-11 | Registered citizen | As a citizen, I want to receive notifications about messages from municipality officers |
+| US-12 | Registered citizen | As a citizen, I want to receive emails about report status changes of already published ones |
+| US-13 | Registered  citizen | As a citizen, I want to receive emails about messages from municipality officers |
+| US-14 | Visitor citizen | As a citizen, I want to check public statistics |
+| US-15 | Registered citizen | As a citizen, I want to communicate with municipality officers |
+| US-16 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
+| US-17 | Municipal officer | As a municipal officer, I want to check reports and be able to update their status. |
+| US-18 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
+| US-19 | System administrator | As a system administrator, I want to guarantee the security on user data |
+| US-20 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
+| US-21 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
 | US-21 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
 | US-22 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
+| US-23 | Visitor citizen | As a visitor citizen, I want to login to my existing account.
+
 
 
 ---
@@ -105,39 +108,35 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 
 | ID    | Requirement statement (The system shall…) | Priority | User story ID | Notes |
 |:------|:------------------------------------------|:---------|:--------------|:------|
-| FR-1 | The system shall provide means to create user accounts |  |  |  |
-| FR-1.1 | The system shall allow users to define and update basic profile information (username, first name, last name)| Critical | US-1/US-14/US-17 |  |
-| FR-1.2 | The system shall allow users to select the type of account  | Critical | US-1/US-14/US-17 |  |
-| FR-1.3 | The system shall verify user email through a verification link. | High | US-1 | Prevent fake accounts. |
-| FR-1.4 | The system shall allow users to add and update profile metadata | Important | US-1/US-14/US-17 |  |
-| FR-1.5 | The system shall allow registered users to log in and access their profile. | Critical | US-1/US-14/US-17 |  |
-| FR-1.6 | The system shall allow registered users to optionally add a profile picture to their account. | Low | US-1/US-14/US-17 |  |
-| FR-2 | The system shall allow registered users to create a new report. |  |  |  |
-| FR-2.1 | The system shall allow registered users to select a geographic location on a map for a report. | Important | US-2 | Based on OpenStreetMap. |
-| FR-2.2 | The system shall allow registered users to add a title and a textual description to a report | Critical | US-2 |  |
-| FR-2.3 | The system shall allow registered users to upload up to 3 photos per report. | Important | US-2 |  |
-| FR-2.4 | The system shall allow users to select a category for a report from a predefined set. | Critical | US-2 |  |
-| FR-2.5 | The system shall allow registered users to submit reports anonymously. |  | US-2/US-3 |  |
-| FR-3 | The system shall provide means to search for reports |  |  |  |
-| FR-3.1 | The system shall allow user to search for reports based on category filters. | US-5 | Critical |  |
-| FR-3.2 | The system shall allow users to sort report results based on selected criteria (date, category, status, ascending/descending...). | Medium |  |  |
-| FR-3.3 | The system shall allow user to search for reports by using table and/or map view | Critical | US-6 |  |
-| FR-4 | The system shall notify users when report status changes. | Critical |  |  
-| FR-4.1 | The system shall support in-platform notifications for the reporting citizen and for who follows the report. | High |  |  |
-| FR-4.2 | The system shall (optionally) send email notifications to registered users. |  |  |  |
-| FR-4.3 | The system shall allow direct messaging between users and municipal operators. |  |  |  |
-| FR-4.4 | The system shall notify registered users when a new report is submitted to the platform. | Medium |  |  |
-| FR-5 | The system shall allow users to export the table view in a CSV format | Important | US-7 |  |
-| FR-6 | The system shall provide public statistics to all users.| Important | US-12 |  |
-| FR-6.1 | The system shall provide advanced (private) statistics for administrators. | | | |
-| FR-7 | The system shall provide a report detail view for each published report. | Critical | |  |
-| FR-7.1 | The system shall display the complete content of each report in its detailed view (title, description, category, location, attached photos...). | | | |
-| FR-7.2 | The system shall allow registered users to start following a report (including reports submitted by others). | | | |
-| FR-7.3 | The system shall allow registered users to stop following a report. | | | |
-| FR-8 | The system shall provide means to municipal officers to have special permissions on reports |  |  |  |
-| FR-8.1 | The system shall allow municipal officers to check reports and be able to update or delete them | Critical | |  |
-| FR-8.2 | The system shall allow municipal officers to communicate with citizens and urban service providers via platform messages | Critical | |  |
-| FR-9 |The system shall allow visitors (non-registered users) to access the public portal for consultation. |  |  |  |
+| FR-1 | The system shall provide means to create and manage user accounts | Critical | US-1 | Covers user account lifecycle (registration, profile management, and authentication). | 
+| FR-1.1 | The system shall allow users to define and update basic profile information (username, first name, last name)| Important | US-2 | Supports personalization of users within the system. |
+| FR-1.2 | The system shall verify user email through a verification link. | Important | US-1 | Required to ensure account validity and prevent misuse or fake accounts. |
+| FR-1.3 | The system shall allow registered users to optionally add a profile picture to their account. | Important | US-2 | Optional feature enhancing user profile personalization. |
+| FR-2 | The system shall allow visitors (un-registered users) to login to an existing account. | Critical | US-23 | Authentication is required to access protected functionalities (precondition for actions such as report creation and following). |
+| FR-3 | The system shall allow registered users to create a new report. | Critical | US-3 | Core functionality of the system; central domain object is the Report. |
+| FR-3.1 | The system shall allow registered users to select a geographic location on a map for a report. | Important | US-3 | Uses external map services (OpenStreetMap) for geolocation. |
+| FR-3.2 | The system shall allow registered users to add a title and a textual description to a report | Critical | US-3 | Mandatory fields required for report understanding and processing. |
+| FR-3.3 | The system shall allow registered users to upload up to 3 photos per report. | Important | US-3 | Limited number of images to control storage and performance.  |
+| FR-3.4 | The system shall allow users to select a category for a report from a predefined set. | Critical | US-3 | Ensures classification and routing of reports. |
+| FR-3.5 | The system shall allow registered users to submit reports anonymously. |  | US-3/US-4 | Supports user privacy while maintaining report visibility. |
+| FR-4 | The system shall provide means to search for reports | Critical | US-5 |  High-level requirement grouping report discovery functionalities.|
+| FR-4.1 | The system shall allow user to search for reports based on category filters. | US-7 | Critical | Enables filtering to refine report search results. |
+| FR-4.2 | The system shall allow users to sort report results based on selected criteria (date, category, status, ascending/descending...). | Important | US-7 | Improves usability by allowing users to organize results. |
+| FR-4.3 | The system shall allow user to search for reports by using table and/or map view | Critical | US-8 | Supports both map-based and table-based exploration of reports. |
+| FR-5 | The system shall notify users | Critical | US-10/US-11 | Refers to system-generated updates related to report lifecycle and interactions.|   
+| FR-5.1 | The system shall support in-platform notifications for the reporting citizen and for who follows the report. | Important | US-10 | Default notification mechanism for users interacting with reports. |
+| FR-5.2 | The system shall (optionally) send email notifications to registered users. | Important | US-12/US-13 | Optional communication channel based on user preferences. |
+| FR-5.3 | The system shall allow direct messaging between users and municipal operators. | Critical | US-11 | Enables two-way communication between citizens and municipal operators. |
+| FR-6 | The system shall allow users to export the table view in a CSV format | Important | US-9 | Supports transparency and external analysis of public data. |
+| FR-7 | The system shall provide public statistics to all users.| Important | US-14 | Provides aggregated public insights into report data. |
+| FR-7.1 | The system shall provide advanced (private) statistics for administrators. | Important | US-20 |Restricted access to advanced analytics for administrative purposes. |
+| FR-8 | The system shall display reports | Critical | US-5/US-6 | Core visualization capability of the system. |
+| FR-8.1 | The system shall display the complete content of each report in its detailed view (title, description, category, location, attached photos...). | Represents the report detail view as described in the baseline.| US-5| |
+| FR-8.2 | The system shall allow registered users to start following a report (including reports submitted by others). | Important | US-6 |Enables user engagement and tracking of report evolution. |
+| FR-8.3 | The system shall allow registered users to stop following a report. | Important | US-6 |Completes the follow functionality (user control over subscriptions). |
+| FR-9 | The system shall provide means to municipal officers to login with special permissions on reports | Critical | US-16 | Role-based access with elevated permissions for municipal officers. |
+| FR-9.1 | The system shall allow municipal officers to check reports and be able to change their status. | Critical | US-17 | Supports report lifecycle management (status updates). |
+| FR-9.2 | The system shall allow municipal officers to communicate with citizens and urban service providers via platform messages | Critical | US-18 | Extends communication capabilities to include operational actors. |
 
 
 ---
