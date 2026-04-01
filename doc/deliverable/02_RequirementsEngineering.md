@@ -39,7 +39,8 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 |:------|:----------|:------------|:-------------------|:------------------|
 | IF-1 | | Citizen (registered) | Smartphone/PC with internet connection | Web GUI | 
 | IF-2 | | Citizen (visitor) | Smartphone/PC with internet connection | Web GUI | 
-| IF-3 | | Municipal office | Smartphone/PC with internet connection | Web GUI | 
+| IF-3 | | Municipal officer | Smartphone/PC with internet connection | Web GUI |
+| IF-4 | | System administrator | Smartphone/PC with internet connection | Web GUI | 
 | IF-4 | | OpenStreetMap API | Internet connection | Map APIs | 
 | IF-5 | | Authetication system | Internet connection | Authentication APIs | 
 | IF-6 | | Notification platform | Internet connection | Notification APIs | 
@@ -88,11 +89,12 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | US-17 | Municipal officer | As a municipal officer, I want to check reports and be able to update their status. |
 | US-18 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
 | US-19 | System administrator | As a system administrator, I want to guarantee the security on user data |
-| US-20 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
-| US-21 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
-| US-21 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
-| US-22 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
-| US-23 | Visitor citizen | As a visitor citizen, I want to login to my existing account.
+| US-20 | System administrator | As a system administrator, I want to access the platform with special permissions on reports |
+| US-21 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
+| US-22 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
+| US-23 | Development team | As a development team member, I want to maintain and update the codebase to improve maintainability and scalability |
+| US-24 | Municipality of Turin | As a municipality of Turin member, I want to track the effectiveness of the platform so that I can be sure it is useful for the citizens |
+| US-25 | Visitor citizen | As a visitor citizen, I want to login to my existing account.
 
 
 
@@ -112,7 +114,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-1.1 | The system shall allow users to define and update basic profile information (username, first name, last name)| Important | US-2 | Supports personalization of users within the system. |
 | FR-1.2 | The system shall verify user email through a verification link. | Important | US-1 | Required to ensure account validity and prevent misuse or fake accounts. |
 | FR-1.3 | The system shall allow registered users to optionally add a profile picture to their account. | Important | US-2 | Optional feature enhancing user profile personalization. |
-| FR-2 | The system shall allow visitors (un-registered users) to login to an existing account. | Critical | US-23 | Authentication is required to access protected functionalities (precondition for actions such as report creation and following). |
+| FR-2 | The system shall allow visitors (un-registered users) to login to an existing account. | Critical | US-24 | Authentication is required to access protected functionalities (precondition for actions such as report creation and following). |
 | FR-3 | The system shall allow registered users to create a new report. | Critical | US-3 | Core functionality of the system; central domain object is the Report. |
 | FR-3.1 | The system shall allow registered users to select a geographic location on a map for a report. | Important | US-3 | Uses external map services (OpenStreetMap) for geolocation. |
 | FR-3.2 | The system shall allow registered users to add a title and a textual description to a report | Critical | US-3 | Mandatory fields required for report understanding and processing. |
@@ -129,7 +131,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-5.3 | The system shall allow direct messaging between users and municipal operators. | Critical | US-11 | Enables two-way communication between citizens and municipal operators. |
 | FR-6 | The system shall allow users to export the table view in a CSV format | Important | US-9 | Supports transparency and external analysis of public data. |
 | FR-7 | The system shall provide public statistics to all users.| Important | US-14 | Provides aggregated public insights into report data. |
-| FR-7.1 | The system shall provide advanced (private) statistics for administrators. | Important | US-20 |Restricted access to advanced analytics for administrative purposes. |
+| FR-7.1 | The system shall provide advanced (private) statistics for administrators. | Important | US-21 |Restricted access to advanced analytics for administrative purposes. |
 | FR-8 | The system shall display reports | Critical | US-5/US-6 | Core visualization capability of the system. |
 | FR-8.1 | The system shall display the complete content of each report in its detailed view (title, description, category, location, attached photos...). | Represents the report detail view as described in the baseline.| US-5| |
 | FR-8.2 | The system shall allow registered users to start following a report (including reports submitted by others). | Important | US-6 |Enables user engagement and tracking of report evolution. |
@@ -137,7 +139,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-9 | The system shall provide means to municipal officers to login with special permissions on reports | Critical | US-16 | Role-based access with elevated permissions for municipal officers. |
 | FR-9.1 | The system shall allow municipal officers to check reports and be able to change their status. | Critical | US-17 | Supports report lifecycle management (status updates). |
 | FR-9.2 | The system shall allow municipal officers to communicate with citizens and urban service providers via platform messages | Critical | US-18 | Extends communication capabilities to include operational actors. |
-
+| FR-10 | The system shall allow system administrator to login with special permissions on configuration aspects and extended analytics | Critical | US-20 | Role-based access with elevated permission for municipal officers |
 
 ---
 
