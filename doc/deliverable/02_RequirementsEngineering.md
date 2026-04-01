@@ -59,7 +59,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | PER-1 | Jack | Registered citizen | Citizen of Turin who usually goes to work by car and uses Participium every morning to report and visualize the reports | Avoid traffic disruptions and contribute to improving city service | Limited time due to work; cannot spend much time creating detailed reports | Mostly his smartphone, sometimes his PC | Clear and minimal GUI, simple to use with his smartphone |
 | PER-2 | John | Visitor citizen | Non resident student of Turin who once per week uses car sharing to reach places in Turin far from his home and uses Participium not to be stuck in the traffic | Avoid traffic disruptions | Passive user | Smartphone | Clear and minimal GUI, simple to use with his smartphone |
 | PER-3 | Mary | Municipal officer | She works for the municipality of Turin and her role is to check submitted reports and update their status | Maintaining reports quality and contributing to improve the city service | Time loss in deleting fake reports and in making the bad written ones useful | PC workstation | Automatization of report validation |
-| PER-4 | Lian | System administrator | Technical member of the administration team who works in the security department | Guarantee user data protection and integrity | Must comply with GDPR internal privacy policies and must quickly respond to data integrity incidents | PC workstation | Secure authentication service and clear GDPR documentation |
+| PER-4 | Lian | System administrator | Technical member of the administration team who works in the statistics department | Provide reliable advanced analytics | Must comply with GDPR, ensure data integrity, handle misconfigurations quickly | PC workstation | Secure authentication, analytics dashboard, configuration interface |
 | PER-6 | Lucy | Development team member | Software engineer in charge of implementing new features and maintaining Participium | Deliver reliabke and maintainable system updates | Must follow coding standards | PC workstation and IDE | Access to development tools and documetation |
 | PER-7 | Frank | Municipality of Turin employee | Administrative staff responsible for ensuring policies are applied | Proper handling of urban issues | Limited technical skills | PC workstation | User-friendly GUI and tutorials |
 ---
@@ -88,7 +88,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | US-16 | Municipal officer | As a municipal officer, I want to access the platform with special permissions on reports |
 | US-17 | Municipal officer | As a municipal officer, I want to check reports and be able to update their status. |
 | US-18 | Municipal officer | As a municipal officer, I want to communicate with citizens and urban service providers |
-| US-19 | System administrator | As a system administrator, I want to guarantee the security on user data |
+| US-19 | System administrator | As a system administrator, I want to manage configuration aspects |
 | US-20 | System administrator | As a system administrator, I want to access the platform with special permissions on reports |
 | US-21 | System administrator | As a system administrator, I want to access private statistics so that I can monitor system usage and report trends |
 | US-22 | Development team | As a development team member, I want to implement new features according to requirements so that the system meets user needs |
@@ -139,7 +139,9 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-9 | The system shall provide means to municipal officers to login with special permissions on reports | Critical | US-16 | Role-based access with elevated permissions for municipal officers. |
 | FR-9.1 | The system shall allow municipal officers to check reports and be able to change their status. | Critical | US-17 | Supports report lifecycle management (status updates). |
 | FR-9.2 | The system shall allow municipal officers to communicate with citizens and urban service providers via platform messages | Critical | US-18 | Extends communication capabilities to include operational actors. |
-| FR-10 | The system shall allow system administrator to login with special permissions on configuration aspects and extended analytics | Critical | US-20 | Role-based access with elevated permission for municipal officers |
+| FR-10 | The system shall allow system administrator to login with special permissions | Critical | US-20 | Role-based access with elevated permission for municipal officers |
+| FR-10.1 | The system shall allow system administrator manage configuration aspects| Critical | US-19 | Role-based access with elevated permission for municipal officers |
+
 
 ---
 
