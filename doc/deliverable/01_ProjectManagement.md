@@ -2,25 +2,26 @@
 
 | ID | Deliverable | Type  | Notes |
 |:---|:------------|:--------------------------------------------------|:------|
-| S1 | Account management service | Software | |
-| S2 | Report management service | Software | |
-| S3 | Interaction with the municipality service | Software | |
-| S4 | Administration role management | Software | |
-| S5 | Mapping service | Software | |
-| S6 | Notification and communication service | Software | |
-| S7 | Statistics service | Software | |
-| S8 | public consultation service | Software | | 
-| S9 | Web client | Software | |
-| I1 | City map data | Infrastructure | |
-| I2 | Storage (reports) | Infrastructure | |
-| I3 | Relational DB (Account, notification, Reports, Messaging) | Infrastructure | |
-| I4 | Backup and disaster recovery | Infrastructure | | 
-| D1 | Requirements document | Documentation | |
-| D2 | Architecture and design document | Documentation | |
-| D3 | Test documentation (Test plan, test report)| Documentation | |
-| D4 | User manual and documentation | Documentation | |
-| D5 | API documentation | Documentation | |
-| D6 | Open source license | Documentation | |
+| S1 | Account management service | Software | Handles user registration, authentication, profile management and roles (citizens, admins) |
+| S2 | Report management service | Software | Core service for creating, editing, tracking and resolving reports submitted by users |
+| S3 | Interaction with the municipality service | Software |Interface layer/API integration with municipal systems for report handling and status updates |
+| S4 | Administration role management | Software | Tools for administrators to manage users, permissions, moderation and system configuration|
+| S5 | Mapping service | Software | Provides geolocation features, map visualization and spatial association of reports |
+| S6 | Notification and communication service | Software |Manages notifications (email/app) and communication between users and municipality |
+| S7 | Statistics service | Software |Aggregates and analyzes data (reports, usage) to generate dashboards and insights |
+| S8 | Public consultation service | Software | Enables visitor citizens just to check for new reports without interacting with them.| 
+| S9 | Web client | Software | Frontend interface for users and administrators to access all system functionalities|
+| I1 | City map data | Infrastructure |External geospatial dataset used by the mapping service (e.g., OpenStreetMap or municipal GIS) |
+| I2 | Storage (reports) | Infrastructure |File/object storage for attachments (images, documents) associated with reports |
+| I3 | Relational DB (Account, notification, Reports, Messaging) | Infrastructure |Central database storing structured data for all core services |
+| I4 | Backup and disaster recovery | Infrastructure | Mechanisms ensuring data persistence, recovery and system continuity in case of failures| 
+| D1 | Requirements document | Documentation |Defines functional, non-functional and domain requirements of the system |
+| D2 | Architecture and design document | Documentation | Describes system architecture, components, interfaces and design decisions|
+| D3 | Test documentation (Test plan, test report) | Documentation | Defines testing strategy, test cases and validation results |
+| D4 | User manual and documentation | Documentation |Guides end users and administrators in using the platform |
+| D5 | API documentation | Documentation |Describes interfaces exposed by services for integration and usage |
+| D6 | Open source license | Documentation |Specifies licensing model and usage rights of the system (non-functional constraint) |
+
 
 ![](../../data/img/PBS.png)
 
