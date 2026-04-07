@@ -112,8 +112,8 @@
       "type": "UseCase",
       "owner": "435523d3-68dc-443c-8415-5c64b2b98401",
       "bounds": {
-        "x": 40,
-        "y": 150,
+        "x": 50,
+        "y": 140,
         "width": 270,
         "height": 80
       }
@@ -304,8 +304,8 @@
       "type": "UseCaseExternalSystem",
       "owner": null,
       "bounds": {
-        "x": 440,
-        "y": 0,
+        "x": 430,
+        "y": 140,
         "width": 170,
         "height": 100
       }
@@ -609,13 +609,13 @@
       "bounds": {
         "x": 60,
         "y": -30,
-        "width": 380,
-        "height": 80
+        "width": 370,
+        "height": 220
       },
       "path": [
         {
-          "x": 380,
-          "y": 80
+          "x": 370,
+          "y": 220
         },
         {
           "x": 0,
@@ -671,13 +671,13 @@
       "bounds": {
         "x": 90,
         "y": 80,
-        "width": 85,
-        "height": 70
+        "width": 95,
+        "height": 60
       },
       "path": [
         {
-          "x": 85,
-          "y": 70
+          "x": 95,
+          "y": 60
         },
         {
           "x": 0,
@@ -795,8 +795,8 @@
       "bounds": {
         "x": -450,
         "y": 60,
-        "width": 490,
-        "height": 130
+        "width": 500,
+        "height": 120
       },
       "path": [
         {
@@ -804,8 +804,8 @@
           "y": 0
         },
         {
-          "x": 490,
-          "y": 130
+          "x": 500,
+          "y": 120
         }
       ],
       "source": {
@@ -1373,6 +1373,68 @@
       "target": {
         "direction": "Left",
         "element": "c6e0fc2d-a80f-4751-96c9-c1870504f130"
+      },
+      "isManuallyLayouted": false
+    },
+    "6de32af1-5206-44b8-97ce-9137f9567386": {
+      "id": "6de32af1-5206-44b8-97ce-9137f9567386",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": -140,
+        "y": -330,
+        "width": 560,
+        "height": 95
+      },
+      "path": [
+        {
+          "x": 560,
+          "y": 95
+        },
+        {
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "543d3cc2-1358-4837-a5e6-d7e27111f161"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "8fb2184a-3a06-475a-b1e2-f3576313a62d"
+      },
+      "isManuallyLayouted": false
+    },
+    "a44c3c81-9ed2-4243-aaa2-5ce83e9a9b99": {
+      "id": "a44c3c81-9ed2-4243-aaa2-5ce83e9a9b99",
+      "name": "",
+      "type": "UseCaseSupport",
+      "owner": null,
+      "bounds": {
+        "x": -60,
+        "y": 190,
+        "width": 490,
+        "height": 130
+      },
+      "path": [
+        {
+          "x": 490,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 130
+        }
+      ],
+      "source": {
+        "direction": "Left",
+        "element": "44104e67-cb7c-4643-9fc3-810ff152042e"
+      },
+      "target": {
+        "direction": "Right",
+        "element": "03b20587-7711-42aa-b29b-a883911c721e"
       },
       "isManuallyLayouted": false
     }
