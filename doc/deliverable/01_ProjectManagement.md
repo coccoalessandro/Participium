@@ -35,7 +35,7 @@
 | T1.1 | Requirements | Definition of functional requirements | D1 |
 | T1.2 | Requirements | Definition of non functional requirements | D1 |
 | T2.1 | Design and architecture | Architecture definition |  D2  |
-| T2.2 | Design and architecture | Definition of storage architecture | D1 |
+| T2.2 | Design and architecture | Definition of storage architecture | D2 |
 | T3.1 | Development | Development of APIs and backend skeleton | I1, I2, I3, I4, S1, S2, S3, S4, S5, S6, S7, S8 |
 | T3.2 | Development | Development of backend | I1, I2, I3, I4, S1, S2, S3, S4, S5, S6, S7, S8 |
 | T3.3 | Development | Development of web app frontend | S9 |
