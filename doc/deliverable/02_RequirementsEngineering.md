@@ -5,7 +5,7 @@
 |:-------|:-----------------|:------------|:-----|:--------------|
 | STK-1 | Citizen (registered) | Registered citizens can submit reports, track their evolution, and interact with the municipality. They own a citizen account created by providing their identity information | User who can view and submit reports | Ease of use of the interfaces, privacy of personal data |
 | STK-2 | Citizen (visitors) | Unregistered users who can access the public portal to browse reports, statistics, and map views without authentication | Public viewer | Accessibility of information, usability of navigation, transparency of data |
-| STK-3 | Municipal office | Personnel of the municipality responsible for managing reports, including validation, assignment, operational handling, and communication with citizens | Internal system user managing reports|Efficient workflow management, ease of use, timely updates, clear communication with citizens |
+| STK-3 | Municipal officer | Personnel of the municipality responsible for managing reports, including validation, assignment, operational handling, and communication with citizens | Internal system user managing reports|Efficient workflow management, ease of use, timely updates, clear communication with citizens |
 | STK-4 | System administrator | Technical user responsible for configuring the system, managing users, and accessing advanced analytics and statistics | System manager | System reliability, security, access control, data integrity |
 | STK-5 | OpenStreetMap API | External service providing map data and geolocation functionalities used to display and select report locations | External geolocation service | Availability, accuracy of map data, performance |
 | STK-6 | Authentication system | External or integrated service that manages user authentication, registration, and identity verification | Identity provider | Security, privacy, authentication reliability |
@@ -46,7 +46,6 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | IF-7 | Email notification interface | Registered citizen and municipal officer | Smartphone/PC with internet connection | Mail service API/SMTP service  |
 | IF-8 | Private analytics | System administrator | PC with internet connection | Dashboard for private statistics and system configuration |
 | IF-9 | Public statistics | Anyone | Smartphone/PC with internet connection | Dashboard for public statistics and report trends|
-| | | | | |
  
 
 
@@ -62,7 +61,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | PER-2 | John | Visitor citizen | Non resident student of Turin who once per week uses car sharing to reach places in Turin far from his home and uses Participium not to be stuck in the traffic | Avoid traffic disruptions | Passive user | Smartphone | Clear and minimal GUI, simple to use with his smartphone |
 | PER-3 | Mary | Municipal officer | She works for the municipality of Turin and her role is to check submitted reports and update their status | Maintaining reports quality and contributing to improve the city service | Time loss in deleting fake reports and in making the bad written ones useful | PC workstation | Automatization of report validation |
 | PER-4 | Lian | System administrator | Technical member of the administration team who works in the statistics department | Provide reliable advanced analytics | Must comply with GDPR, ensure data integrity, handle misconfigurations quickly | PC workstation | Secure authentication, analytics dashboard, configuration interface |
-| PER-6 | Lucy | Development team member | Software engineer in charge of implementing new features and maintaining Participium | Deliver reliabke and maintainable system updates | Must follow coding standards | PC workstation and IDE | Access to development tools and documetation |
+| PER-6 | Lucy | Development team member | Software engineer in charge of implementing new features and maintaining Participium | Deliver reliable and maintainable system updates | Must follow coding standards | PC workstation and IDE | Access to development tools and documetation |
 | PER-7 | Frank | Municipality of Turin employee | Administrative staff responsible for ensuring policies are applied | Proper handling of urban issues | Limited technical skills | PC workstation | User-friendly GUI and tutorials |
 ---
 
@@ -117,7 +116,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-1.1 | The system shall allow users to define and update basic profile information (username, first name, last name)| Important | US-2 | Supports personalization of users within the system. |
 | FR-1.2 | The system shall verify user email through a verification link. | Important | US-1 | Required to ensure account validity and prevent misuse or fake accounts. |
 | FR-1.3 | The system shall allow registered users to optionally add a profile picture to their account. | Important | US-2 | Optional feature enhancing user profile personalization. |
-| FR-2 | The system shall allow visitors (un-registered users) to login to an existing account. | Critical | US-23 | Authentication is required to access protected functionalities (precondition for actions such as report creation and following). |
+| FR-2 | The system shall allow visitors (un-registered users) to login to an existing account. | Critical | US-25 | Authentication is required to access protected functionalities (precondition for actions such as report creation and following). |
 | FR-3 | The system shall allow registered users to create a new report. | Critical | US-3 | Core functionality of the system; central domain object is the Report. |
 | FR-3.1 | The system shall allow registered users to select a geographic location on a map for a report. | Important | US-3 | Uses external map services (OpenStreetMap) for geolocation. |
 | FR-3.2 | The system shall allow registered users to add a title and a textual description to a report | Critical | US-3 | Mandatory fields required for report understanding and processing. |
@@ -129,7 +128,7 @@ Attach your context diagram as an image under `../data/img/` and link it here:
 | FR-4.2 | The system shall allow users to sort report results based on selected criteria (date, category, status, ascending/descending...). | Important | US-7 | Improves usability by allowing users to organize results. |
 | FR-4.3 | The system shall allow user to search for reports by using table and/or map view | Critical | US-8 | Supports both map-based and table-based exploration of reports. |
 | FR-5 | The system shall notify users | Critical | US-10/US-11 | Refers to system-generated updates related to report lifecycle and interactions.|   
-| FR-5.1 | The system shall support in-platform notifications for the reporting citizen and for who follows the report. | Important | US-10 | Default notification mechanism for users interacting with reports. |
+| FR-5.1 | The system shall support in-platform notifications for the reporting citizen and for the ones who follow the report. | Important | US-10 | Default notification mechanism for users interacting with reports. |
 | FR-5.2 | The system shall (optionally) send email notifications to registered users. | Important | US-12/US-13 | Optional communication channel based on user preferences. |
 | FR-5.3 | The system shall allow direct messaging between users and municipal operators. | Critical | US-11 | Enables two-way communication between citizens and municipal operators. |
 | FR-6 | The system shall allow users to export the table view in a CSV format | Important | US-9 | Supports transparency and external analysis of public data. |
