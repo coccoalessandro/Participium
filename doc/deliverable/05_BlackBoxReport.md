@@ -4,9 +4,18 @@ Suggested test file: `test_authenticate.py`
 
 Prototype: `authenticate(identifier: str, password: str) -> User`
 
-| TC-ID | identifier | password | Expected | Fixture |
-| :---- | :--------- | :------- | :------- | :------ |
-|  |  |  |  |  |
+| TC-ID | identifier | password | Input |Expected | Fixture |
+| :---- | :--------- | :------- | :---- |:------- | :------ |
+|  TC-1 | empty | * | ("","psw19") | AuthenticationError("credentials are invalid") | * |
+|  TC-2 | * | empty | ("Group19","") | AuthenticationError("credentials are invalid") | * |
+|  TC-3 | any | * | ("Group19","psw19") | AuthenticationError("credentials are invalid")| * |
+|  TC-4 | * | any | ("Group20","psw19") | AuthenticationError("credentials are invalid") | * |
+|  TC-5 | correct username | correct | ("Group20","psw20") | The authenticated `User` | Active and Verified |
+|  TC-6 | correct and verified email | correct | ("Group20@gmail.com","psw20") | The authenticated `User` | Active and Verified |
+|  TC-7 | correct email | correct | ("Group20@gmail.com","psw20") | AuthenticationError("the matched user exists but email is not verified") | Active and not Verified email |
+|  TC-8 | correct username | correct | ("Group20","psw20") | AuthenticationError("the matched user exists but email is not verified") | Active and not Verified email |
+|  TC-9 | correct username | correct | ("Group20","psw20") | AuthenticationError("the matched user exists but is inactive") | Inactive |
+|  TC-10 | correct email | correct | ("Group20@gmail.com","psw20") | AuthenticationError("the matched user exists but is inactive") | Inactive |
 
 ## 2 `participium.core.utils.parse_date`
 
@@ -14,9 +23,11 @@ Suggested test file: `test_parse_date.py`
 
 Prototype: `parse_date(value: str | None) -> datetime | None`
 
-| TC-ID | value | Expected | Fixture |
-| :---- | :---- | :------- | :------ |
-|  |  |  |  |
+| TC-ID | value | Input | Expected | Fixture |
+| :---- | :---- | :---- | :------- | :------ |
+| TC-1 | any | ("32-13-210") | Wrong input |  |
+| TC-2 | empty | ("") |  |
+| TC-3 | correct | ("20/04/2026") |  |
 
 ## 3 `participium.core.status_flow.ensure_transition_allowed`
 

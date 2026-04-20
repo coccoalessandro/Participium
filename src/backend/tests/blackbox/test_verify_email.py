@@ -2,6 +2,15 @@ from __future__ import annotations
 
 import pytest
 
+# Function: 
+# Inputs: token_value (str)
+# Expected Output:
+# - The verified `User` if the token is valid and not expired.
+# - `ValidationError` if the token is invalid, already used, or expired.
+#def verify_email(self, token_value: str) -> User
+#| TC-ID | token_value | Input |Expected | Fixture |
+#| :---- | :--------- | :---- |:------- | :------ |
+
 from participium.core.exceptions import ValidationError
 from participium.models.user import User
 from participium.services.auth_service import AuthService
