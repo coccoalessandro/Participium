@@ -1,5 +1,8 @@
 from __future__ import annotations
-
+from participium.services.auth_service import AuthService
+import pytest
+from participium.core.exceptions import AuthenticationError
+from participium.models.user import User
 from participium.services.auth_service import AuthService
 
 # Function: authenticate
@@ -10,24 +13,13 @@ from participium.services.auth_service import AuthService
 # - AuthenticationError: if the matched user exists but is inactive.
 # - AuthenticationError: if the matched user exists but email is not verified.
 #def authenticate(identifier: str, password: str) -> User
-#| TC-ID | identifier | password | Input |Expected | Fixture |
-#| :---- | :--------- | :------- | :---- |:------- | :------ |
-#|  TC-1 | empty | * | ("","psw19") | AuthenticationError("credentials are invalid") | * |
-#|  TC-2 | * | empty | ("Group19","") | AuthenticationError("credentials are invalid") | * |
-#|  TC-3 | any | * | ("Group19","psw19") | AuthenticationError("credentials are invalid")| * |
-#|  TC-4 | * | any | ("Group20","psw19") | AuthenticationError("credentials are invalid") | * |
-#|  TC-5 | correct username | correct | ("Group20","psw20") | The authenticated `User` | Active and Verified |
-#|  TC-6 | correct and verified email | correct | ("Group20@gmail.com","psw20") | The authenticated `User` | Active and Verified |
-#|  TC-7 | correct email | correct | ("Group20@gmail.com","psw20") | AuthenticationError("the matched user exists but email is not verified") | Active and not Verified email |
-#|  TC-8 | correct username | correct | ("Group20","psw20") | AuthenticationError("the matched user exists but email is not verified") | Active and not Verified email |
-#|  TC-9 | correct username | correct | ("Group20","psw20") | AuthenticationError("the matched user exists but is inactive") | Inactive |
-#|  TC-10 | correct email | correct | ("Group20@gmail.com","psw20") | AuthenticationError("the matched user exists but is inactive") | Inactive |
-# equivalence classes for 
 
 
 PENDING_VERIFICATION_USER = User(
     id=101,
-    username="Group20",
+    username="maria.rossi",
+    first_name="Maria",
+    last_name="Rossi",
     email="maria.rossi@example.com",
     password_hash="HASHED_PASSWORD_101",
     is_active=True,
@@ -56,7 +48,44 @@ UNACTIVE_VERIFIED_USER = User(
     is_email_verified=True,
 )
 
-def test_authenticate_username_success(seed_verify_email_data: None) -> None:
+#TC-1
+def test_authenticate_empty_identifier_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = ""
+    password_value = "password"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+#TC-2
+def test_authenticate_empty_password_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "luca.bianchi"
+    password_value = ""
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+    
+#TC-3
+def test_authenticate_wrong_identifier_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "pippo"
+    password_value = "password"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+#TC-4
+def test_authenticate_wrong_password_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "luca.bianchi"
+    password_value = "psw"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+#TC-5
+def test_authenticate_username_success(seed_authenticate_data: None) -> None:
     auth_service = AuthService()
     identifier_value = "luca.bianchi"
     password_value = "password"
@@ -71,7 +100,8 @@ def test_authenticate_username_success(seed_verify_email_data: None) -> None:
     assert verified_user.email == CORRECT_USER.email
     assert verified_user.is_email_verified is True
 
-def test_authenticate_email_success(seed_verify_email_data: None) -> None:
+#TC-6
+def test_authenticate_email_success(seed_authenticate_data: None) -> None:
     auth_service = AuthService()
     identifier_value = "luca.bianchi@example.com"
     password_value = "password"
@@ -86,9 +116,38 @@ def test_authenticate_email_success(seed_verify_email_data: None) -> None:
     assert verified_user.email == CORRECT_USER.email
     assert verified_user.is_email_verified is True
 
-def test_authenticate_username_unsuccess(seed_authenticate_data: None) -> None:
+#TC-7
+def test_authenticate_unverified_email_unsuccess(seed_authenticate_data: None) -> None:
     auth_service = AuthService()
-    identifier_value = "pippo"
+    identifier_value = "maria.rossi@example.com"
+    password_value = "password"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+#TC-8
+def test_authenticate_unverified_username_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "maria.rossi"
+    password_value = "password"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+
+#TC-9
+def test_authenticate_unactive_username_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "giulia.neri"
+    password_value = "password"
+
+    with pytest.raises(AuthenticationError):
+        auth_service.authenticate(identifier_value, password_value)
+
+#TC-10
+def test_authenticate_unactive_email_unsuccess(seed_authenticate_data: None) -> None:
+    auth_service = AuthService()
+    identifier_value = "giulia.neri@example.com"
     password_value = "password"
 
     with pytest.raises(AuthenticationError):

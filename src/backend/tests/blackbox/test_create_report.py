@@ -1,8 +1,17 @@
 from __future__ import annotations
 
 from participium.services.report_service import ReportService
+from participium.core.exceptions import ValidationError
+from participium.models.user import User
+from participium.models.category import Category
+from participium.models.report import Report
+import pytest
 
-# Function: 
+from dataclasses import field
+from participium.models.enums import ReportStatus
+
+
+# Function: create_report
 # Inputs: reporter: User, category_id: int | str | None, title: str | None, description: str | None, latitude: float | str | None, longitude: float | str | None, photos: list[FileStorage], is_anonymous: bool = False
 # Expected Output:
 # - The created `Report`, reloaded after persistence if successful.
@@ -23,5 +32,127 @@ from participium.services.report_service import ReportService
 #   photos: list[FileStorage],
 #   is_anonymous: bool = False,
 #   ) -> Report
-#| TC-ID | reporter | category_id | title |description | latitude | longitude |photos | is_anonymous | Input |Expected | Fixture |
-#| :---- | :------- | :---------- | :---- |:---------- | :------- | :-------- | :---- | :------------: | :---- | :------ | :------- |
+
+CORRECT_USER = User(
+    id=102,
+    username="luca.bianchi",
+    first_name="Luca",
+    last_name="Bianchi",
+    email="luca.bianchi@example.com",
+    password_hash="HASHED_PASSWORD_102",
+    is_active=True,
+    is_email_verified=True,
+)
+
+CORRECT_CATEGORY = Category(
+    1, "Waste", True
+)
+
+MALFORMED_CATEGORY = Category(
+    -1, "Waste", True
+)
+
+UNKNOWN_CATEGORY = Category(
+    2, "Categ", True
+)
+
+INACTIVE_CATEGORY = Category(
+    3, "Waste", False
+)
+
+CORRECT_REPORT = Report(
+    id = None,
+    title = "Titolo Valido",
+    description = "Descrizione valida",
+    latitude = 45.0,
+    longitude = 9.0,
+    is_anonymous = False,
+    status = ReportStatus.PENDING_APPROVAL,
+    rejection_reason = None,
+    reporter_id = 102,
+    category_id = 1,
+    reporter = CORRECT_USER,
+    category = CORRECT_CATEGORY,
+    photos = ["foto1.jpg"],
+    status_history = [],
+    followers = [],
+    messages = []
+)
+
+@pytest.mark.parametrize(
+    "reporter, category_id, title, description, latitude, longitude, photos, is_anonymous",
+    [
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+    ]
+)
+def test_create_report_success(reporter, category_id, title, description, latitude, longitude, photos, is_anonymous):
+    report_service = ReportService()
+    
+    # Esecuzione
+    result = report_service.create_report(
+        reporter=reporter,
+        category_id=category_id,
+        title=title,
+        description=description,
+        latitude=latitude,
+        longitude=longitude,
+        photos=photos,
+        is_anonymous=is_anonymous
+    )
+    
+    # Verifica
+    assert isinstance(result, Report)
+    assert result.title == CORRECT_REPORT.title
+    assert result.reporter == CORRECT_REPORT.reporter
+    assert result.category == CORRECT_REPORT.category
+    assert result.description == CORRECT_REPORT.description
+    assert result.latitude == CORRECT_REPORT.latitude
+    assert result.longitude == CORRECT_REPORT.longitude
+    assert result.photos == CORRECT_REPORT.photos
+    assert result.is_anonymous == CORRECT_REPORT.is_anonymous
+
+    
+
+
+@pytest.mark.parametrize(
+    "reporter, category_id, title, description, latitude, longitude, photos, is_anonymous",
+    [
+        (CORRECT_USER, None, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, -1,"Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 2, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 3, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+                
+        (CORRECT_USER, 1, "", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "", 45.0, 9.0, ["foto1.jpg"], False),
+           
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", "", 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, "", ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", "lat", 9.0, ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, "long", ["foto1.jpg"], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, [], False),
+        
+        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"], False),
+    ]
+)
+def test_create_report_raises_validation_error(reporter, category_id, title, description, latitude, longitude, photos, is_anonymous):
+    report_service = ReportService()
+    
+    with pytest.raises(ValidationError):
+        report_service.create_report(
+            reporter=reporter,
+            category_id=category_id,
+            title=title,
+            description=description,
+            latitude=latitude,
+            longitude=longitude,
+            photos=photos,
+            is_anonymous=is_anonymous
+        )

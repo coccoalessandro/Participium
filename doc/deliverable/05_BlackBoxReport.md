@@ -25,9 +25,10 @@ Prototype: `parse_date(value: str | None) -> datetime | None`
 
 | TC-ID | value | Input | Expected | Fixture |
 | :---- | :---- | :---- | :------- | :------ |
-| TC-1 | any | ("32-13-210") | Wrong input |  |
-| TC-2 | empty | ("") |  |
-| TC-3 | correct | ("20/04/2026") |  |
+| TC-1 | any | ("32/13-210") | ValueError |  |
+| TC-2 | empty | ("") | None | |
+| TC-3 | correct | ("2026-04-20") | datetime | |
+| TC-4 | None | None | None | |
 
 ## 3 `participium.core.status_flow.ensure_transition_allowed`
 
@@ -45,7 +46,19 @@ Allowed transitions:
 
 | TC-ID | current_status | next_status | Expected | Fixture |
 | :---- | :------------- | :---------- | :------- | :------ |
-|  |  |  |  |  |
+| TC-1 | Pending Approval | Pending Approval / Assigned / Rejected | True |  |
+| TC-2 | Pending Approval | In Progress / Suspended / Resolved | ValidationError |  |
+| TC-3 | Assigned | Assigned / In Progress / Suspended / Resolved | True |  |
+| TC-4 | Assigned | Pending Approval / Rejected | ValidationError |  |
+| TC-5 | In Progress | In Progress / Suspended / Resolved | True |  |
+| TC-6 | In Progress | Rejected / Pending Approval / Assigned | ValidationError |  |
+| TC-7 | Suspended | Suspended / In Progress / Resolved | True |  |
+| TC-8 | Suspended | Pending Approval / Assigned / Rejected | ValidationError |  |
+| TC-9 | Rejected | Rejected | True |  |
+| TC-10 | Rejected | Pending Approval / Assigned / In Progress / Suspended / Resolved | ValidationError |  |
+| TC-11 | Resolved | Resolved | True |  |
+| TC-12 | Resolved | Pensig Approval / Assigned / In Progess / Suspended / Rejected | ValidationError |  |
+
 
 ## 4 `participium.services.report_service.ReportService.create_report`
 
@@ -53,9 +66,21 @@ Suggested test file: `test_create_report.py`
 
 Prototype: `create_report(reporter: User, category_id: int | str | None, title: str | None, description: str | None, latitude: float | str | None, longitude: float | str | None, photos: list[FileStorage], is_anonymous: bool = False) -> Report`
 
-| TC-ID | reporter | category_id | title | description | latitude | longitude | photos | is_anonymous | Expected | Fixture |
-| :---- | :------- | :---------- | :---- | :---------- | :------- | :-------- | :----- | :----------- | :------- | :------ |
-|  |  |  |  |  |  |  |  |  |  |  |
+| TC-ID | reporter | category_id | title |description | latitude | longitude |photos | is_anonymous |Expected | Fixture |
+| :---- | :------- | :---------- | :---- |:---------- | :------- | :-------- | :---- | :------------: | :---- |:------ |
+| TC-1 | correct | correct | correct | correct | correct | correct | correct | correct | Report |  |
+| TC-2 | * | empty | * | * | * | * | * | * | ValidationError |  |
+| TC-3 | * | malformed | *| * | * | * | * | * | ValidationError |  |
+| TC-4 | * | unkown | *| * | * | * | * | * | ValidationError |  |
+| TC-5 | * | inactive category | *| * | * | * | * | * | ValidationError |  |
+| TC-6 | * | * | empty | * | * | * | * | * | ValidationError |  |
+| TC-7 | * | * | * | empty | * | * | * | * | ValidationError |  |
+| TC-8 | * | * | *| * | empty | * | * | * | ValidationError |  |
+| TC-9 | * | * | *| * | * | empty | * | * | ValidationError |  |
+| TC-10 | * | * | * | * | non convertible | * | * | * | ValidationError |  |
+| TC-11 | * | * | *| * | * | non convertible | * | * | ValidationError |  |
+| TC-12 | * | * | *| * | * | * | non valid photos | * | ValidationError |  |
+| TC-13 | * | * | *| * | * | * | too many photos | * | ValidationError |  |
 
 ## 5 `participium.services.report_service.ReportService.update_status`
 
