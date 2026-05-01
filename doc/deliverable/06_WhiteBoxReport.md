@@ -99,24 +99,52 @@ A total of **3 test cases** are sufficient to achieve maximum structural coverag
 
 ### Control Flow Graph
 
-- ![](../data/img/xxx.xxx)
+![](../../data/img/CFG_count_unread_message_notifications_by_report.png)
 
 ### Atomic Conditions
+- **C1**: `notification.report_id is None`
 
 ### Structural Lower Bound
-
+The structural lower bound is **3**. Three independent paths are required to cover the loop bypass (empty list), the filtering branch (`continue` when None), and the counting branch (dictionary update).
 ### Node Coverage
-
+A mocked repository must return a list containing at least one notification with a valid `report_id` (to reach the dictionary update) and at least one where `report_id` is `None` (to reach `continue`).
 ### Edge Coverage
+- Loop Entry (True) and Loop Exit (False).
 
+- If branch (True) leading to continue.
+
+- If branch (False) leading to the dictionary update.
 ### Condition Coverage
+- **C1 = True**: notification.report_id is None.
 
+- **C1 = False**: notification.report_id contains a valid integer.
 ### Loop Coverage
+- **0 Iterations**: Repository returns an empty list [].
+
+- **1 Iteration**: List with one valid notification.
+
+- **Multiple Iterations**: List with multiple notifications (including duplicates with the same report_id to test the counts.get(...) + 1 accumulation logic).
 
 ### Path Coverage
+- **Path A**: Repository returns [] → Loop bypassed → Return {}.
 
+- **Path B**: Loop Condition (True) → if (True) → continue.
+
+- **Path C**: Loop Condition (True) → if (False) → Update dictionary.
 ### Minimal Suite Test
+A total of **2 test cases** are sufficient to achieve maximum structural coverage:
 
+- **Empty List**: `notifications = []`
+
+Covers the 0-iteration loop path and the False edge of the loop condition.
+
+- **Mixed Notifications**: `notifications = [Mock(report_id=None), Mock(report_id=10), Mock(report_id=10)]`
+
+    - **Iteration 1**: Covers **C1 = True** and the execution of the `continue` node.
+
+    - **Iteration 2**: Covers **C1 = False**, the False branch of the `if`, and the dictionary update node (initial insertion).
+
+    - **Iteration 3**: Covers **C1 = False**, verifying the accumulation logic (`counts.get(...) + 1`) for an existing report_id.
 
 ## 5 `UserService.update_user`
 
