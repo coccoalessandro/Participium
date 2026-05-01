@@ -1,3 +1,0 @@
-from __future__ import annotations
-
-from participium.services.notification_service import NotificationService
