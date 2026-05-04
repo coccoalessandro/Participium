@@ -32,7 +32,6 @@ def notification_service_bundle() -> dict[str, object]:
 def test_notify_status_change_path_a_empty_list(
     notification_service_bundle: dict[str, object],
 ) -> None:
-    #Path A: Loop condition False (0 iterations).
     service = notification_service_bundle["service"]
     report = Mock(id=123)
 
@@ -49,7 +48,6 @@ def test_notify_status_change_path_b_filtering_none_and_duplicates(
     report = Mock(id=123)
     user1 = Mock(id=102)
     
-    # recipients[0] -> valid, recipients[1] -> None (C1), recipients[2] -> duplicate (C2)
     recipients = [user1, None, user1]
 
     service.notify_status_change(recipients=recipients, report=report, body="Status updated")
@@ -60,7 +58,7 @@ def test_notify_status_change_path_b_filtering_none_and_duplicates(
 def test_notify_status_change_path_c_success_multiple_recipients(
     notification_service_bundle: dict[str, object],
 ) -> None:
-    #Path C: Loop True -> If False (Successful notification).
+    
     service = notification_service_bundle["service"]
     report = Mock(id=123)
     user1 = Mock(id=102)
