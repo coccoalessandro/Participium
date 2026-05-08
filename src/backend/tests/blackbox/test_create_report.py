@@ -45,20 +45,22 @@ CORRECT_USER = User(
 )
 
 CORRECT_CATEGORY = Category(
-    1, "Waste", True
+    id=1, name="Waste", is_active= True
 )
 
 MALFORMED_CATEGORY = Category(
-    -1, "Waste", True
+    id=-1, name="Waste", is_active=True
 )
 
 UNKNOWN_CATEGORY = Category(
-    2, "Categ", True
+    id=2, name="Categ", is_active=True
 )
 
 INACTIVE_CATEGORY = Category(
-    3, "Waste", False
+    id=3, name="Waste", is_active=False
 )
+
+
 
 CORRECT_REPORT = Report(
     id = None,
