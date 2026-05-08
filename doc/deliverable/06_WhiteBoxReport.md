@@ -76,25 +76,129 @@ TC-8 (Happy Path - N Iterations): A fully valid payload with 2 valid photos. Thi
 
 ## 2 `MessagingService._resolve_recipient`
 
+
 ### Control Flow Graph
 
-- ![](../data/img/xxx.xxx)
+
+- ![](../../data/img/CGF_resolve_recipient.png)
+
 
 ### Atomic Conditions
 
+
+- **C1**: `sender.role in {ADMIN, OPERATOR}`
+- **C2**: loop condition over `reversed(messages)`
+- **C3**: `message.sender is not None`
+- **C4**: `message.sender.role in {ADMIN, OPERATOR}`
+- **C5**: loop condition over `reversed(report.status_history)` 
+- **C6**: `status_event.changed_by is not None`
+- **C7**: `status_event.changed_by.role in {ADMIN, OPERATOR}`
+
+
 ### Structural Lower Bound
+
+
+The structural lower bound is **6**. It is computed from the 5 decision nodes in the control-flow graph, resulting in **6 linearly independent paths**.
+
 
 ### Node Coverage
 
+
+The test suite must execute every node in the control-flow graph at least once. This includes the initial sender role check, both loop nodes, the internal decision nodes inside the loops, and all return nodes.
+
+
+In particular, node coverage requires covering the following outcomes:
+- direct return of `report.reporter`;
+- return of a valid `message.sender`;
+- return of a valid `status_event.changed_by`;
+- final `return None`.
+
+
 ### Edge Coverage
+
+
+In order to achieve Edge Coverage, the test suite must cover both true and false branches of every decision node.
+
 
 ### Condition Coverage
 
+
+The test suite must make each atomic condition evaluate both true and false at least once. Therefore, the following condition outcomes must be covered: 
+- C1: true when the sender is ADMIN/OPERATOR, false otherwise;
+- C2: true when there is at least one message to inspect, false when the message list is empty or exhausted;
+- C3: true when `message.sender` exists, false when it is `None`;
+- C4: true when `message.sender.role` is ADMIN/OPERATOR, false otherwise;
+- C5: true when there is at least one status event to inspect, false when the status history is empty or exhausted;
+- C6: true when `status_event.changed_by` exists, false when it is `None`;
+- C7: true when `status_event.changed_by.role` is ADMIN/OPERATOR, false otherwise.
+
+
 ### Loop Coverage
+
+
+Loop coverage requires executing each loop with:
+- 0 iterations,
+- 1 iteration, 
+- 2 or more iterations.
+
+
+This function contains two loops:
+- the loop over `reversed(messages)`,
+- the loop over `reversed(report.status_history)`.
+
+
+The message loop should be tested at least with an empty message list, a list with one message, and a list with multiple messages.
+
+
+The status-history loop, instead, should be tested at least with an empty status history, a status history with one event, and a status history with multiple events.
+
 
 ### Path Coverage
 
+
+Full path coverage is not feasible because the two loops can generate an unbounded number of execution paths. 
+For this reason, the goal is to cover the main independent paths through the function:
+- sender is ADMIN/OPERATOR and the function returns `report.reporter`;
+- sender is not ADMIN/OPERATOR and a valid admin/operator message sender is found;
+- sender is not ADMIN/OPERATOR, no valid message sender is found, and a valid admin/operator status changer is found;
+- sender is not ADMIN/OPERATOR, no valid message sender is found, no valid status changer is found, and the function returns `None`.
+
+
 ### Minimal Suite Test
+
+
+A minimal test suite achieving the structural coverage for the function resolve_recipient requires the following **5 test cases**: 
+
+
+- **TC1 - Sender is ADMIN/OPERATOR**  
+  Input: `sender.role = ADMIN` or `sender.role = OPERATOR`  
+  Expected result: returns `report.reporter`  
+
+
+- **TC2 - No messages and no status events**  
+  Input: `messages = []`, `report.status_history = []`  
+  Expected result: returns `None`  
+
+
+- **TC3 - Valid message sender found**  
+  Input: `messages = [message(sender=admin_user)]`  
+  Expected result: returns `message.sender`  
+
+
+- **TC4 - Valid status changer found**  
+  Input: `sender.role = CITIZEN`, `messages = []`, `report.status_history = [status_event(changed_by=operator)]`  
+  Expected result: returns `status_event.changed_by`  
+
+
+- **TC5 - Multiple invalid messages and status events**  
+  Input:  
+  `messages = [message(sender=None), message(sender=citizen_user)]`  
+  `report.status_history = [status_event(changed_by=None), status_event(changed_by=citizen_user)]`  
+  Expected result: returns `None`  
+
+
+Although the structural lower bound is 6, the same execution may cover multiple independent paths. Therefore, the highest feasible structural coverage can be achieved with only 5 non-redundant test cases.
+
 
 ## 3 `NotificationService.notify_status_change`
 
