@@ -26,7 +26,6 @@ def category_service_bundle() -> dict[str, object]:
         "category_repository": category_repository,
     }
 
-# Test cases for get_category method of CategoryService
 
 #TC-1 
 def test_get_category_success(category_service_bundle: dict[str, object]) -> None: 
@@ -54,7 +53,6 @@ def test_get_category_not_found(category_service_bundle: dict[str, object]) -> N
     with pytest.raises(NotFoundError):
         service.get_category(mock_category.id)
 
-# Test cases for list_categories method of CategoryService
 
 # TC-3
 def test_list_categories_success(category_service_bundle: dict[str, object]) -> None:
@@ -73,7 +71,6 @@ def test_list_categories_success(category_service_bundle: dict[str, object]) -> 
     assert len(result_categories) == 2
     assert all(isinstance(cat, Category) for cat in result_categories)
 
-# Test cases for create_category method of CategoryService
 
 # TC-4
 def test_create_category_success(category_service_bundle: dict[str, object]) -> None:
@@ -113,7 +110,6 @@ def test_create_category_not_string_unsuccess(category_service_bundle: dict[str,
     with pytest.raises(ValidationError):
         service.create_category(mock_category.name)
 
-# Test cases for update_category method of CategoryService
 
 # TC-7
 def test_update_category_success(category_service_bundle: dict[str, object]) -> None:
