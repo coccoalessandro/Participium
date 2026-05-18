@@ -12,7 +12,6 @@ from participium.models.token import EmailVerificationToken
 from participium.models.user import User
 
 
-
 @pytest.fixture
 def db_session(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("DATABASE_URL", "sqlite+pysqlite:///:memory:")

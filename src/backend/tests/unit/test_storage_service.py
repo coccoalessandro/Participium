@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -10,7 +10,6 @@ from participium.services.storage_service import StorageService, LocalFileStorag
 pytestmark = pytest.mark.whitebox
 
 def _make_file_storage(*, filename: str = "photo.jpg") -> Mock:
-    """Return a Mock that mimics werkzeug.datastructures.FileStorage."""
     mock_file = Mock()
     mock_file.filename = filename
     return mock_file

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from unittest.mock import MagicMock, Mock
+from unittest.mock import Mock
 
 import pytest
 
@@ -45,8 +45,8 @@ def _mock_report(
     reporter_id: int = 10,
     category_id: int = 5,
     status: ReportStatus = ReportStatus.PENDING_APPROVAL,
-) -> MagicMock:
-    report = MagicMock(spec=Report)
+) -> Mock:
+    report = Mock(spec=Report)
     report.id = report_id
     report.reporter_id = reporter_id
     report.category_id = category_id

@@ -14,7 +14,6 @@ pytestmark = pytest.mark.integration
 
 
 def _set_created_at(db_session, report, timestamp: datetime) -> None:
-    """Directly patch created_at on a report row so ordering tests are reliable."""
     db_session.execute(
         text("UPDATE reports SET created_at = :ts WHERE id = :id"),
         {"ts": timestamp.isoformat(sep=" "), "id": report.id},

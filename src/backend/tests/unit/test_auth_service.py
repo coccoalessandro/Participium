@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -209,7 +209,7 @@ def pending_user() -> User:
 
 @pytest.fixture
 def valid_token_case(auth_bundle: dict[str, object], pending_user: User) -> dict[str, object]:
-    mock_token = MagicMock()
+    mock_token = Mock()
     mock_token.token = VALID_TOKEN
     mock_token.is_used = False
     mock_token.expires_at = utcnow() + timedelta(hours=1)
@@ -227,7 +227,7 @@ def nonexistent_token_case(auth_bundle: dict[str, object]) -> dict[str, object]:
 
 @pytest.fixture
 def already_used_token_case(auth_bundle: dict[str, object]) -> dict[str, object]:
-    mock_token = MagicMock()
+    mock_token = Mock()
     mock_token.is_used = True
     auth_bundle["token_repo"].get_by_token.return_value = mock_token
     auth_bundle["token"] = mock_token
@@ -236,7 +236,7 @@ def already_used_token_case(auth_bundle: dict[str, object]) -> dict[str, object]
 
 @pytest.fixture
 def expired_token_case(auth_bundle: dict[str, object], pending_user: User) -> dict[str, object]:
-    mock_token = MagicMock()
+    mock_token = Mock()
     mock_token.is_used = False
     mock_token.expires_at = utcnow() - timedelta(hours=1)
     mock_token.user = pending_user
