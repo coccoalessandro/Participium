@@ -33,3 +33,6 @@ priv/
 
 # Preserved local fork ignore rules
 priv.DS_Store
+.DS_Store
+.vscode/
+
