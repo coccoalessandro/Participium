@@ -1,5 +1,0 @@
-FROM: noreply@participium.local
-TO: citizen@example.com
-SUBJECT: Report #27 status updated
-
-Report #27 has been assigned for handling in category 'Architectural Barriers'.

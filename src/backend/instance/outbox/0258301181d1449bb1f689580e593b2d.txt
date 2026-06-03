@@ -1,5 +1,0 @@
-FROM: noreply@participium.local
-TO: citizen@example.com
-SUBJECT: Report #12 status updated
-
-Report #12 has been assigned for handling in category 'Roads and Urban Furniture'.
