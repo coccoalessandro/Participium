@@ -304,7 +304,7 @@ Covers the 0-iteration loop path and the False edge of the loop condition.
 
     - **Iteration 3**: Covers **C1 = False**, verifying the accumulation logic (`counts.get(...) + 1`) for an existing report_id.
 
-## 5 UserService.update_user
+## 5 `UserService.update_user`
 
 ### Control Flow Graph
 
