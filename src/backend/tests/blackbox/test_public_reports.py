@@ -43,6 +43,7 @@ def test_public_reports_desc(seed_public_reports_data: None) -> None:
         dates = [report.status_history[0].created_at for report in report_list]
         assert dates == sorted(dates, reverse=True)
 
+
 #TC-2
 def test_public_reports_asc(seed_public_reports_data: None) -> None:
     report_service = ReportService()
@@ -66,3 +67,19 @@ def test_public_reports_asc(seed_public_reports_data: None) -> None:
     if len(report_list) > 1:
         dates = [report.status_history[0].created_at for report in report_list]
         assert dates == sorted(dates)
+
+
+#TC-3
+def test_public_reports_no_filters(seed_public_reports_data: None) -> None:
+    report_service = ReportService()
+    
+    report_list = report_service.list_public_reports(None, None, None, None, "desc")
+
+    assert isinstance(report_list, list)
+
+    for report in report_list:
+        assert isinstance(report, Report)
+
+    if len(report_list) > 1:
+        dates = [report.created_at for report in report_list]
+        assert dates == sorted(dates, reverse=True)

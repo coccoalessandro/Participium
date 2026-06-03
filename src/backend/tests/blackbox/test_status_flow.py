@@ -19,7 +19,6 @@ import pytest
 # - ValidationError: if the transition is not allowed by the workflow rules.
 #def ensure_transition_allowed(current_status: ReportStatus, next_status: ReportStatus) -> bool
 
-
 @pytest.mark.parametrize(
     "current_status, next_status",
     [

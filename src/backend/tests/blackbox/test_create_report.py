@@ -45,27 +45,25 @@ CORRECT_USER = User(
 )
 
 CORRECT_CATEGORY = Category(
-    id=1, name="Waste", is_active= True
+    1, "Waste", True
 )
 
 MALFORMED_CATEGORY = Category(
-    id=-1, name="Waste", is_active=True
+    -1, "Waste", True
 )
 
 UNKNOWN_CATEGORY = Category(
-    id=2, name="Categ", is_active=True
+    2, "Categ", True
 )
 
 INACTIVE_CATEGORY = Category(
-    id=3, name="Waste", is_active=False
+    3, "Waste", False
 )
-
-
 
 CORRECT_REPORT = Report(
     id = None,
-    title = "Titolo Valido",
-    description = "Descrizione valida",
+    title = "Valid Title",
+    description = "Valid Description",
     latitude = 45.0,
     longitude = 9.0,
     is_anonymous = False,
@@ -84,13 +82,12 @@ CORRECT_REPORT = Report(
 @pytest.mark.parametrize(
     "reporter, category_id, title, description, latitude, longitude, photos, is_anonymous",
     [
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
     ]
 )
 def test_create_report_success(reporter, category_id, title, description, latitude, longitude, photos, is_anonymous):
     report_service = ReportService()
     
-    # Esecuzione
     result = report_service.create_report(
         reporter=reporter,
         category_id=category_id,
@@ -102,7 +99,6 @@ def test_create_report_success(reporter, category_id, title, description, latitu
         is_anonymous=is_anonymous
     )
     
-    # Verifica
     assert isinstance(result, Report)
     assert result.title == CORRECT_REPORT.title
     assert result.reporter == CORRECT_REPORT.reporter
@@ -119,29 +115,29 @@ def test_create_report_success(reporter, category_id, title, description, latitu
 @pytest.mark.parametrize(
     "reporter, category_id, title, description, latitude, longitude, photos, is_anonymous",
     [
-        (CORRECT_USER, None, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, None, "Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, -1,"Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, -1,"Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, 2, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 2, "Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, 3, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 3, "Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
                 
-        (CORRECT_USER, 1, "", "Descrizione valida", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "", "Valid Description", 45.0, 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "", 45.0, 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "", 45.0, 9.0, ["foto1.jpg"], False),
            
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", "", 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", "", 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, "", ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", 45.0, "", ["foto1.jpg"], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", "lat", 9.0, ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", "lat", 9.0, ["foto1.jpg"], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, "long", ["foto1.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", 45.0, "long", ["foto1.jpg"], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, [], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", 45.0, 9.0, [], False),
         
-        (CORRECT_USER, 1, "Titolo valido", "Descrizione valida", 45.0, 9.0, ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"], False),
+        (CORRECT_USER, 1, "Valid Title", "Valid Description", 45.0, 9.0, ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"], False),
     ]
 )
 def test_create_report_raises_validation_error(reporter, category_id, title, description, latitude, longitude, photos, is_anonymous):
