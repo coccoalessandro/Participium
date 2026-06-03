@@ -2,6 +2,13 @@ from __future__ import annotations
 
 import pytest
 
+# Function: 
+# Inputs: token_value (str)
+# Expected Output:
+# - The verified `User` if the token is valid and not expired.
+# - `ValidationError` if the token is invalid, already used, or expired.
+#def verify_email(self, token_value: str) -> User
+
 from participium.core.exceptions import ValidationError
 from participium.models.user import User
 from participium.services.auth_service import AuthService
@@ -47,13 +54,6 @@ EXPIRED_TOKEN_USER = User(
 
 @pytest.fixture
 def seed_verify_email_data() -> None:
-    # Populate the system with the users and tokens needed by
-    # `AuthService.verify_email`.
-    #
-    # Suggested dataset:
-    # - `PENDING_VERIFICATION_USER` linked to `VALID_TOKEN`
-    # - `USED_TOKEN_USER` linked to an already used token
-    # - `EXPIRED_TOKEN_USER` linked to `EXPIRED_TOKEN`
     pass
 
 

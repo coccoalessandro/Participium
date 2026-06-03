@@ -105,3 +105,4 @@ class AuthService:
         if not user.is_email_verified:
             raise AuthenticationError("Email verification is required before login.")
         return user
+

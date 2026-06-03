@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 from flask.testing import FlaskClient
 
-from participium import create_app
+from participium.app import create_app
 from participium.database import close_connection, get_session
 from participium.models.category import Category
 
