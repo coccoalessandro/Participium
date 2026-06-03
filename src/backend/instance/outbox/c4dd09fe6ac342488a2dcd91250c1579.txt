@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: citizen@example.com
+SUBJECT: Report #2 status updated
+
+Report #2 is now 'Resolved'.

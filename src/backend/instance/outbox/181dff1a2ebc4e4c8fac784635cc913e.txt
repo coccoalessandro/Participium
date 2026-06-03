@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: citizen@example.com
+SUBJECT: Report #13 status updated
+
+Report #13 has been assigned for handling in category 'New Category Name'.

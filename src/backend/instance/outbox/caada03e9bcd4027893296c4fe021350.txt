@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: admin@example.com
+SUBJECT: New message on report #31
+
+John e755 Doe e755: Hello from citizen

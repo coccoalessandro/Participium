@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: operator@example.com
+SUBJECT: New message on report #8
+
+Marco Citizen: Citizen message 26f415b1

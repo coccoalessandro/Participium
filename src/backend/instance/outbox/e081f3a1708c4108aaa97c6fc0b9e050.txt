@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: citizen@example.com
+SUBJECT: Report #14 status updated
+
+Report #14 is now 'In Progress'.

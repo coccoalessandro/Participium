@@ -1,0 +1,5 @@
+FROM: noreply@participium.local
+TO: citizen@example.com
+SUBJECT: Report #7 status updated
+
+Report #7 is now 'Suspended'.
