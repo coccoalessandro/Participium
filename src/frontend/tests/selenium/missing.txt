@@ -1,0 +1,32 @@
+uc01: 
+duplicate main success test
+missing 4c, 5a
+
+uc02:
+timeout main success
+missing 4b
+
+uc03:
+errors 
+missing 3a 6a 6b
+
+uc04:
+failed 3 test
+missing 2a 3a
+
+uc05:
+penultimo failed
+
+uc06:
+ridondante
+missing 2a
+
+uc07:
+ridondante
+errori e fail
+missing 3a
+
+uc08:
+missing 2a
+
+uc09:
