@@ -1,0 +1,83 @@
+x-db-credentials: &db-credentials
+  MYSQL_DATABASE: participium
+  MYSQL_USER: participium
+  MYSQL_PASSWORD: participium_password
+
+x-ports: &ports
+  backend: "5050"
+  frontend: "5173"
+  database: "3306"
+
+services:
+
+  database:
+    image: mysql:8
+    environment:
+      <<: *db-credentials
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        - CMD
+        - mysql
+        - -h
+        - "127.0.0.1"
+        - -uparticipium
+        - -pparticipium_password
+        - participium
+        - -e
+        - "SELECT 1"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    container_name: participium-database
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    environment:
+      <<: *db-credentials
+      DATABASE_URL: "mysql+pymysql://participium:participium_password@database:3306/participium?autocommit=true"
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"
+      HOST: "0.0.0.0"
+      PORT: "5050"
+      AUTO_INIT_DB: "true"
+      BOOTSTRAP_REFERENCE_DATA: "true"
+      BOOTSTRAP_DEMO_DATA: "true"
+      FRONTEND_ORIGIN: "http://localhost:5173"
+    ports:
+      - "5050:5050"
+    volumes:
+      - ../src/backend:/usr/src/app
+      - backend_instance:/usr/src/app/instance
+      - backend_uploads:/usr/src/app/uploads
+    depends_on:
+      database:
+        condition: service_healthy
+    container_name: participium-backend
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/frontend.Dockerfile
+    environment:
+      VITE_API_BASE_URL: "http://localhost:5050/api/v1"
+      VITE_BACKEND_BASE_URL: "http://localhost:5050"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../src/frontend:/usr/src/app
+      - frontend_node_modules:/usr/src/app/node_modules
+    container_name: participium-frontend
+
+volumes:
+  mysql_data:
+  backend_instance:
+  backend_uploads:
+  frontend_node_modules:
