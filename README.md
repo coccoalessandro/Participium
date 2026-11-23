@@ -1,37 +1,94 @@
-# Participium - Project Repository
+# Participium
 
-**System description (entry point):**
-- **[Participium.md](doc/Participium.md)** � definitive system description (EN)
-- **[Participium_it.md](doc/Participium_it.md)** � Italian version (IT)
+A citizen-participation web platform for the City of Turin. Citizens report urban issues (potholes, broken streetlights, waste, architectural barriers) on a city map, and municipal operators manage each report through a tracked lifecycle until it is resolved.
 
----
+Developed by a team of 4 students for the Software Engineering course at Politecnico di Torino.
 
-## Repository structure
+<!-- Add 1–2 screenshots of the running app here, e.g. the map view and a report detail page -->
 
-- **`doc/`**  
-  Project documentation.
-    - `Participium.md`: general system description (EN).
-    - `Participium_it.md`: general system description (IT).
-    - `OfficialDocumentation.md`: official requirement engineering documentation.
-    - `Participium_Implementation_Spec.md`: implementation specification.
-    - `deliverables/`: **stubs/templates** to be completed for each project task.
+## Features
 
-- **`data/`**  
-  Static/auxiliary data used by the project documentation and deliverables.
-    - `img/`: images referenced by Markdown documents.
+- **Geo-located reports** on an OpenStreetMap map, with title, description, category, 1–3 photos and an optional anonymous mode
+- **Report lifecycle:** Pending Approval → Assigned → In Progress → Suspended / Rejected / Resolved, with a mandatory motivation for rejections
+- **Public consultation:** map view, filterable and sortable table, report details and CSV export
+- **Notifications and messaging:** in-platform and email updates for reporters and followers, direct messages between citizens and operators
+- **Statistics:** public statistics by category and over time, private breakdowns for administrators
+- **Roles:** visitor, citizen, municipal operator, administrator
 
-- **`src/`**  
-  Source code of the system implementation.
+## Tech stack
 
-- **`task/`**  
-  Task specifications and assignment texts (what must be done for each project task).
+| Layer | Technologies |
+| --- | --- |
+| Backend | Python, Flask, REST API, OpenAPI (Swagger), SQLAlchemy |
+| Frontend | React, TypeScript, Vite, React Router, Leaflet |
+| Database | SQLite (default), MySQL 8 (via Docker) |
+| Testing | pytest, pytest-cov (unit, integration, black-box, white-box), Selenium end-to-end tests |
+| Deployment | Docker, Docker Compose |
 
----
+## Architecture
 
-## Changelog
+The backend follows a layered architecture, so each layer can be tested in isolation:
 
-| Date (YYYY-MM-DD) | Version | Description                                                                                                                                              |
-|:------------------|:--------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2026-03-04        | 1.0.0   | Initial public release. Added system description in EN/IT and repository structure (`doc/`, `task/`, `data/`, deliverable templates, and static assets). |
-| 2026-03-04        | 1.1.0   | Added `task/Task_01.md` and `doc/deliverable/01_ProjetcManagement.md`                                                                                     |
-| 2026-04-15        | 1.2.0   | Added the official documentation and `src/` as the repository area for the system implementation. |
+```text
+Routes → Controllers → Services → Repositories → SQLAlchemy models
+```
+
+- **Routes** adapt HTTP input and output only
+- **Controllers** orchestrate use cases
+- **Services** hold the business rules (status transitions, notifications, statistics)
+- **Repositories** are the only layer that queries the database
+
+Infrastructure is configuration-driven: switching from SQLite to MySQL only requires environment variables and Docker Compose, with no code changes.
+
+## Getting started
+
+### With Docker (frontend + backend + MySQL)
+
+From the repository root:
+
+```bash
+docker compose -f docker/docker-compose.yml up --build
+```
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5050
+- Swagger UI: http://localhost:5050/apidocs/
+
+### Backend only (SQLite)
+
+```bash
+cd src/backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python wsgi.py
+```
+
+See [`src/backend/README.md`](src/backend/README.md) for configuration, seed data and Windows instructions.
+
+### Demo accounts
+
+With demo data enabled (the default), the backend creates:
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Citizen | citizen@example.com | Citizen123! |
+| Operator | operator@example.com | Operator123! |
+| Admin | admin@example.com | Admin123! |
+
+## Tests
+
+From `src/backend`:
+
+```bash
+python -m pytest --cov=participium --cov-config=.coveragerc --cov-report=term-missing
+```
+
+Test suites are split into `unit`, `integration`, `blackbox`, `whitebox` and `e2e`. Coverage targets controllers, routes, services, repositories and core logic.
+
+## Documentation
+
+- [System description (EN)](doc/Participium.md) · [Italiano](doc/Participium_it.md)
+- [Requirements and official documentation](doc/OfficialDocumentation.md)
+- [Implementation specification](doc/Participium_Implementation_Spec.md)
+- [Black-box](doc/deliverable/05_BlackBoxReport.md) and [white-box](doc/deliverable/06_WhiteBoxReport.md) test reports
